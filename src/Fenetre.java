@@ -1,6 +1,4 @@
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
-import javax.sound.midi.Soundbank;
 import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
@@ -34,6 +32,8 @@ public class Fenetre extends JFrame {
         Fantome.DeplacementFantR(Fantome.TestdeplacementFantR(labybool));
         Fantome.DeplacementFantB(Fantome.TestdeplacementFantB(labybool));
         Fantome.DeplacementFantV(Fantome.TestdeplacementFantV(labybool));
+
+
 
     }
 }
