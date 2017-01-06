@@ -1,39 +1,54 @@
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 
-import javax.sound.midi.Soundbank;
-import javax.swing.JFrame;
+import edu.princeton.cs.introcs.StdDraw;
 
-public class  Fenetre extends JFrame {
-    public static Panneau pan = new Panneau();
+public class Fenetre{
 
-    public Fenetre() {
-        this.setTitle("PACMAN TOTO BEN");
-        this.setSize(565, 800);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
-        this.setContentPane(pan);
+    static char [][] laby;
+
+    public static void draw() {
+        laby = Laby.getLaby();
+        StdDraw.setPenColor(0,39,218);
+        for (int k=0; k<32; k++){
+            for (int j=0; j < 28; j++){
+                if (laby[k][j] == '#'){
+                    StdDraw.rectangle(j+0.5, -k-0.5,0.5,0.5);
+                }
+                if (laby[k][j] == 'D'){
+                    StdDraw.picture(j+0.5, - k-0.5, "imagepacman.png", 1.7, 1.7);
+
+                }
+                if(laby[k][j] == 'P'){
+                    StdDraw.picture(j + 0.5, - k-0.5, "pastille.png", 0.2, 0.2);
+                }
+            }
+        }
+        System.out.println("test");
+        Laby.Afficher(laby);
+        StdDraw.show(0);
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        Fenetre fen = new Fenetre();
-        int[] pos = {24, 14};
-        int[] posfb = {15, 11};
-        int[] posfr = {15, 13};
-        int[] posfv = {15, 15};
-        Fantome.setPosfb(posfb);
-        Fantome.setPosfr(posfr);
-        Fantome.setPosfv(posfv);
-        Pacman.setPos(pos);
-        char[][] laby = Laby.Gene(pos, posfb, posfr, posfv);
-        boolean[][] labybool = Laby.GeneBool(laby);
-        Laby.Afficher(Laby.Gene(pos, posfb, posfr, posfv));
+    public static void main(String[] args)  {
+        StdDraw.setCanvasSize(1200,1200);
+        StdDraw.setXscale(0, 28);
+        StdDraw.setYscale(-32, 0);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.filledRectangle(14,-16, 14,16);
+        StdDraw.enableDoubleBuffering();
 
+        int [] pos = {24,14};
+        StdDraw.show(0);
+        Pacman.setPos(pos);
+        Laby.Afficher(Laby.Gene(pos));
+        draw();
+
+        char [][] laby = Laby.Gene(pos);
+        boolean [][] labybool = Laby.GeneBool(laby);
 
         Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-        Fantome.DeplacementFantR(Fantome.TestdeplacementFantR(labybool));
-        Fantome.DeplacementFantB(Fantome.TestdeplacementFantB(labybool));
-        Fantome.DeplacementFantV(Fantome.TestdeplacementFantV(labybool));
 
+        Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+
+        //Laby.Afficher(Laby.Gene(pos));
     }
+
 }
