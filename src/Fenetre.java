@@ -59,6 +59,7 @@ public class Fenetre{
 
         Pacman.Deplacement(Pacman.Testdeplacement(labybool));
         Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+        Fantome.DeplacementFantR(Fantome.TestdeplacementFantR(labybool));
 
 
         //Laby.Afficher(Laby.Gene(pos));
