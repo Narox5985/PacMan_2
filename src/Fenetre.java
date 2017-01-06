@@ -36,9 +36,13 @@ public class Fenetre{
         StdDraw.enableDoubleBuffering();
 
         int [] pos = {24,14};
+        int [] posfr = {14,11};
+        int [] posfb = {14, 13};
+        int [] posfv = {14, 15};
+
         StdDraw.show(0);
         Pacman.setPos(pos);
-        Laby.Afficher(Laby.Gene(pos));
+        Laby.Afficher(Laby.Gene(pos,
         draw();
 
         char [][] laby = Laby.Gene(pos);
