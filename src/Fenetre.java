@@ -49,6 +49,7 @@ public class Fenetre{
         boolean [][] labybool = Laby.GeneBool(laby);
 
         Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+        Pacman.Deplacement(Pacman.Testdeplacement(labybool));
 
 
         //Laby.Afficher(Laby.Gene(pos));

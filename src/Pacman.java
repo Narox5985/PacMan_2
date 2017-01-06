@@ -55,7 +55,7 @@ public class Pacman {
     public static int [] Deplacement(boolean [] test) throws InterruptedException{
 
     	Scanner clavier = new Scanner(System.in);
-
+        StdDraw.enableDoubleBuffering();
 
         char [][] laby = Laby.getLaby();
         boolean [][] labybool = Laby.GeneBool(laby);
@@ -71,6 +71,10 @@ public class Pacman {
                 	npos[0] = npos[0]-1;
                     System.out.println("x =   " + npos[0] + "   " + "y =   " + npos[1]);
                     Laby.Afficher(Laby.Gene(npos, nposfr, nposfb, nposfv));
+                    Fenetre.draw();
+                    StdDraw.show();
+                    StdDraw.pause(60);
+
                     test = Testdeplacement(labybool);
                 }
             }
@@ -80,6 +84,9 @@ public class Pacman {
                 	npos[0] = npos[0]+1;
                     System.out.println("x =   " + npos[0] + "   " + "y =   " + npos[1]);
                     Laby.Afficher(Laby.Gene(npos, nposfr, nposfb, nposfv));
+                    Fenetre.draw();
+                    StdDraw.show();
+                    StdDraw.pause(60);
                     test = Testdeplacement(labybool);
                 }
             }
@@ -89,6 +96,9 @@ public class Pacman {
                 	npos[1] = npos[1]-1;
                     System.out.println("x =   " + npos[0] + "   " + "y =   " + npos[1]);
                     Laby.Afficher(Laby.Gene(npos, nposfr, nposfb, nposfv));
+                    Fenetre.draw();
+                    StdDraw.show();
+                    StdDraw.pause(60);
                     test = Testdeplacement(labybool);
                 }
             }
@@ -99,12 +109,15 @@ public class Pacman {
                 	npos[1] = npos[1]+1;
                     System.out.println("x =   " + npos[0] + "   " + "y =   " + npos[1]);
                     Laby.Afficher(Laby.Gene(npos, nposfr, nposfb, nposfv));
+                    Fenetre.draw();
+                    StdDraw.show();
+                    StdDraw.pause(60);
                     test = Testdeplacement(labybool);
                 }
             }
            	System.out.println("Pacman ne peut plus ou pas aller dans cette direction");
            	
-           	Deplacement(test);
+
            	
            	return (npos);
     }
