@@ -3,7 +3,7 @@ import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javax.sound.midi.Soundbank;
 import javax.swing.JFrame;
 
-public class Fenetre extends JFrame {
+public class  Fenetre extends JFrame {
     public static Panneau pan = new Panneau();
 
     public Fenetre() {
