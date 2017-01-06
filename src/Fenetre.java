@@ -34,6 +34,5 @@ public class Fenetre extends JFrame {
         Fantome.DeplacementFantV(Fantome.TestdeplacementFantV(labybool));
 
 
-
     }
 }

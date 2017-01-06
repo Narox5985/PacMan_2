@@ -1,5 +1,3 @@
-import java.awt.Graphics;
-
 public class Laby {
 
 private static char[][] laby = new char [32][28];
