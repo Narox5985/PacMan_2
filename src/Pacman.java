@@ -62,20 +62,20 @@ public class Pacman {
 
        char dep = Joueur.getDep();
        System.out.print(dep);   	
-           	if (dep == 'z'){
-                	npos[0] = npos[0]-1;
+           	if (dep == 'z' && test[0]){
+                	npos[0] = npos[0]+1;
                 }
            	
-           	if (dep == 's'){
-                	npos[0] = npos[0]+1;
+           	if (dep == 's' && test[1]){
+                	npos[0] = npos[0]-1;
                 }
 
            	
-           	if (dep == 'q'){
+           	if (dep == 'q' && test[2]){
                 	npos[1] = npos[1]-1;
             }
            	
-           	if (dep == 'd'){
+           	if (dep == 'd' && test[3]){
                 	npos[1] = npos[1]+1;
                 }
 
