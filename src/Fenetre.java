@@ -1,3 +1,4 @@
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Fenetre{
@@ -27,6 +28,7 @@ public class Fenetre{
 
     public static void main(String[] args)  {
         int [] pos = {24,14};
+        int [] posfr = {11, 14};
         StdDraw.setCanvasSize(1200,1200);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-32, 0);
@@ -37,17 +39,21 @@ public class Fenetre{
 
         //StdDraw.show(0);
         Pacman.setPos(pos);
-        Laby.Afficher(Laby.Gene(pos));
+
+        Fantome.setPosfr(posfr);
+
+        Laby.Afficher(Laby.Gene(pos, posfr));
         draw();
 
-        char [][] laby = Laby.Gene(pos);
+        char [][] laby = Laby.Gene(pos, posfr);
         boolean [][] labybool = Laby.GeneBool(laby);
 
         Joueur.ini(val);
         while(true) {
             Joueur.cmdPacman();
             int [] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-            Laby.Gene(npos);
+            int [] nposfr = Fantome.DeplacementFantR(Fantome.TestdeplacementFantR(labybool));
+            Laby.Gene(npos, nposfr);
             Fenetre.draw();
             StdDraw.show();
             StdDraw.pause(200);
