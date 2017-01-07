@@ -28,10 +28,11 @@ public class Fenetre{
         //Laby.Afficher(laby);
         StdDraw.show(0);
     }
+    private static char ancienneDir = 'z';
 
     public static void main(String[] args)  {
         int [] pos = {24,14};
-        int [] posfr = {11, 14};
+        int [] posfr = {11,14};
         StdDraw.setCanvasSize(1200,1200);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-32, 0);
@@ -43,7 +44,7 @@ public class Fenetre{
         //StdDraw.show(0);
         Pacman.setPos(pos);
         Fantome.setPosfr(posfr);
-
+        Fantome.setAncienneDir(ancienneDir);
         Laby.Afficher(Laby.Gene(pos, posfr));
         draw();
 
@@ -54,11 +55,11 @@ public class Fenetre{
         while(true) {
             Joueur.cmdPacman();
             int [] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-            int [] nposfr = Fantome.DeplacementFantR(Fantome.TestdeplacementFantR(labybool));
+            int []nposfr=Fantome.DeplacementFr();
             Laby.Gene(npos, nposfr);
             Fenetre.draw();
-            StdDraw.show();
-            StdDraw.pause(200);
+            StdDraw.show(200);
+            StdDraw.pause(10);
             StdDraw.clear(StdDraw.BLACK);
         }
 

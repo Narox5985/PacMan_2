@@ -1,132 +1,109 @@
 import java.util.Random;
 
-
 /**
- * Created by benoit on 06/01/2017.
+ * Created by rivie_000 on 07/01/2017.
  */
 public class Fantome {
 
-    private static int [] nposfr;
-    private static int aposfr;
+    private static int[] nposfr;
 
 
-    public static boolean [] TestdeplacementFantR(boolean labybool[][]) {
 
+    public static void setPosfr(int[] nposfr) {
+        Fantome.nposfr = nposfr;
+    }
+    public static int [] getPosfr (){
+        return nposfr;
+    }
 
+    public static void setAncienneDir(char ancienneDir){
+        Fantome.ancienneDir = ancienneDir;
+    }
+
+    //static Random random = new Random(System.currentTimeMillis());
+    public static Random random = new Random();
+    private static char dir;
+    private static char ancienneDir;
+
+    public static void DirectionFantome(){
+        int nombre = random.nextInt(4);
+        if (nombre == 0){
+            dir = 'z';
+        }
+        if (nombre == 1){
+            dir = 's';
+        }
+        if (nombre == 2){
+            dir = 'q';
+        }
+        if (nombre == 3){
+            dir = 'd';
+        }
+    }
+
+    public static void TestDeplacementFr(boolean labybool[][]) {
+        DirectionFantome();
         int x = nposfr[0];
         int y = nposfr[1];
 
-        boolean [] testfr = new boolean [4];
-
-
-
-
-        if (labybool[x - 1][y]){
-            testfr[0]= true;
-        }
-        if (!labybool[x - 1][y]){
-            testfr[0] = false;
-        }
-
-        if (labybool[x + 1][y]){
-            testfr[1]= true;
-        }
-        if (!labybool[x + 1][y]){
-            testfr[1] = false;
-        }
-
-        if (labybool[x][y - 1]){
-            testfr[2]= true;
-        }
-        if (!labybool[x][y - 1]){
-            testfr[2] = false;
-        }
-
-        if (labybool[x][y + 1]){
-            testfr[3]= true;
-        }
-        if (!labybool[x][y + 1]){
-            testfr[3] = false;
-        }
-
-        if (aposfr == 0){
-            testfr[0] = false;
-        }
-
-        if(aposfr == 1){
-            testfr[1] = false;
-        }
-
-        if(aposfr == 2){
-            testfr[3] = false;
-        }
-
-        if(aposfr == 3){
-            testfr[2] = false;
-        }
-
-        for(int k=0; k<4; k++){
-            if (k != 3){
-                System.out.print( testfr[k] + "\t");
+        boolean res = false;
+        if (dir == 'z' && ancienneDir != 's') {
+            if (labybool[x - 1][y]) {
+                res = true;
             }
-            else
-                System.out.println( testfr [k]);
+        }
+        if (dir == 's'&& ancienneDir != 'z') {
+            if (labybool[x + 1][y]) {
+                res = true;
+            }
+        }
+        if (dir == 'q'&& ancienneDir != 'd') {
+            if (labybool[x][y - 1]) {
+                res = true;
+            }
+            if( x == 15 && y == 0){
+                res = true;
+            }
+        }
+        if (dir == 'd'&& ancienneDir != 'q') {
+            if (labybool[x][y + 1]) {
+                res = true;
+            }
+            if( x == 15 && y == 27){
+                res = true;
+            }
         }
 
-        return(testfr);
-
+        if (res == false){
+            DirectionFantome();
+            TestDeplacementFr(Laby.getLabybool());
+        }
     }
+    public static int[] DeplacementFr() {
+        TestDeplacementFr(Laby.getLabybool());
+        ancienneDir = dir;
 
-
-    public static int [] DeplacementFantR(boolean [] testfr) {
-
-        Random rand = new Random();
-        int nombreAleatoire = rand.nextInt(3 - 0 + 1) + 0;
-        boolean[][] labybool = Laby.GeneBool(Laby.Gene(Pacman.getPos(), Fantome.getPosfr()));
-
-
-
-        if (nombreAleatoire == 0 && testfr[0]){
-                aposfr = 0;
-                nposfr[0] = nposfr[0]-1;
-        }if (nombreAleatoire != 0 && !testfr[0]){
-            DeplacementFantR(TestdeplacementFantR(labybool));
+        if (dir == 'z') {
+            nposfr[0] = nposfr[0] - 1;
+        }
+        if (dir == 's' ) {
+            nposfr[0] = nposfr[0] + 1;
+        }
+        if (dir == 'q' ) {
+            nposfr[1] = nposfr[1] - 1;
+        }
+        if (dir == 'd' ) {
+            nposfr[1] = nposfr[1] + 1;
         }
 
-        if (nombreAleatoire == 1 && testfr[1]){
-                aposfr = 1;
-                nposfr[0] = nposfr[0]+1;
-        }if (nombreAleatoire != 1 && !testfr[1]){
-            DeplacementFantR(TestdeplacementFantR(labybool));
+        if(dir == 'q' && nposfr[0]==15 && nposfr[1] == 0 ){
+            nposfr[1] = 27;
         }
-
-        if (nombreAleatoire == 2 && testfr[2]){
-                aposfr = 2;
-                nposfr[1] = nposfr[1]-1;
-        }if (nombreAleatoire != 2 && !testfr[2]){
-            DeplacementFantR(TestdeplacementFantR(labybool));
-        }
-
-        if (nombreAleatoire == 3 && testfr[3]){
-                aposfr = 3;
-                nposfr[1] = nposfr[1]+1;
-        }if (nombreAleatoire != 3 && !testfr[3]){
-            DeplacementFantR(TestdeplacementFantR(labybool));
+        if(dir == 'd' && nposfr[0]==15 && nposfr[1] == 27 ){
+            nposfr[1] = 0;
         }
 
         return (nposfr);
     }
-
-
-
-    public static void setPosfr(int [] nposfr){
-        Fantome.nposfr = nposfr;
-    }
-
-    public static int [] getPosfr(){
-        return nposfr;
-    }
-
-
 
 }

@@ -1,8 +1,9 @@
-import java.awt.Graphics;
+
 
 public class Laby {
 
 	private static char[][] laby = new char [32][28];
+
 
 	public static char [][] Gene(int [] pos, int [] posfr){
 
@@ -469,18 +470,17 @@ public class Laby {
 		}
 		laby[pos[0]][pos[1]] = 'D';
 
-		laby[posfr[0]][posfr[1]] = 'R';
 
 		//System.out.print(tab [0] + "=======" + tab[1]);
 
 		for (int k=0; k<32; k++){
 			for (int j=0; j<28; j++){
-				if (laby[k][j]!='#' && laby[k][j]!='D'&& laby[k][j]!='V'&& laby[k][j]!='R'){
+				if (laby[k][j]!='#' && laby[k][j]!='D'&& laby[k][j]!='V'){
 					laby[k][j]='P';
 				}
 			}
 		}
-
+		laby[posfr[0]][posfr[1]] = 'R';
 		for (int k=9; k<32; k++){
 			for (int j=0; j<28; j++){
 				if (k >9 && k < 20){
@@ -503,9 +503,10 @@ public class Laby {
 		return(laby);
 	}
 
+	private static boolean [][] labybool;
 
 	public static boolean [][] GeneBool(char laby [][]){
-		boolean [][] labybool = new boolean [32][28];
+		labybool = new boolean [32][28];
 		for (int k =0; k<32; k ++){
 			for (int j=0; j <28; j++){
 				if (laby [k][j] == '#'){
@@ -520,6 +521,8 @@ public class Laby {
 		}
 		return labybool;
 	}
+
+
 	public static void Afficher(char laby [][]){
 		for (int k=0; k<32; k++){
 			for (int j=0; j<28; j++){
@@ -548,6 +551,9 @@ public class Laby {
 
 	public static char [][] getLaby(){
 		return laby;
+	}
+	public static boolean [][] getLabybool(){
+		return labybool;
 	}
 //public static void main(String[] args){
 	//Afficher(Gene(Pacman.getPos()));
