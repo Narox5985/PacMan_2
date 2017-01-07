@@ -1,92 +1,102 @@
-import edu.princeton.cs.introcs.StdDraw;
-
-
+/**
+ * Created by rivie_000 on 07/01/2017.
+ */
 public class Pacman {
 
-	private static int [] npos;
-	
-	
-    public static boolean [] Testdeplacement(boolean labybool[][]){
+    private static char dep;
+    private static int[] npos;
+    private static char ancienDep;
+    private static  boolean res;
 
+    public static void setPos(int[] npos) {
+        Pacman.npos = npos;
+    }
+
+    public static boolean Testdeplacement(boolean labybool[][]) {
+        dep = Joueur.getDep();
         int x = npos[0];
         int y = npos[1];
-
-        boolean [] test = new boolean [4];
-        
-        if (labybool[x - 1][y]){
-        	test[0]= true;
-        }        
-        if (!labybool[x - 1][y]){
-        	test[0] = false;
-        }
-
-        if (labybool[x + 1][y]){
-        	test[1]= true;
-        }
-        if (!labybool[x + 1][y]){
-        	test[1] = false;    
-        }
-            
-        if (labybool[x][y - 1]){
-        	test[2]= true;
-        }
-        if (!labybool[x][y - 1]){
-        	test[2] = false;
-        }
-          
-        if (labybool[x][y + 1]){
-        	test[3]= true;
-        }
-        if (!labybool[x][y + 1]){
-        	test[3] = false;     
-        }
-
-        for(int k=0; k<4; k++){
-        	if (k != 3){
-        	System.out.print( test[k] + "\t");
-        	}
-        	else
-        		System.out.println( test [k]);
-        }
-        return(test);
-
-    }
-    
-
-    public static int [] Deplacement(boolean [] test) throws InterruptedException{
-
-        StdDraw.enableDoubleBuffering();
-
-        Joueur.cmdPacman();
-
-       char dep = Joueur.getDep();
-       System.out.print(dep);   	
-           	if (dep == 'z' && test[0]){
-                	npos[0] = npos[0]+1;
-                }
-           	
-           	if (dep == 's' && test[1]){
-                	npos[0] = npos[0]-1;
-                }
-
-           	
-           	if (dep == 'q' && test[2]){
-                	npos[1] = npos[1]-1;
+        res = true;
+        if (dep == 'z') {
+            if (labybool[x - 1][y]) {
+                res = true;
             }
-           	
-           	if (dep == 'd' && test[3]){
-                	npos[1] = npos[1]+1;
-                }
+            if (!labybool[x - 1][y]) {
+                res = false;
+            }
+        }
+        if (dep == 's') {
+            if (labybool[x + 1][y]) {
+                res = true;
+            }
+            if (!labybool[x + 1][y]) {
+                res = false;
+            }
+        }
+        if (dep == 'q') {
+            if (labybool[x][y - 1]) {
+                res = true;
+            }
+            if (!labybool[x][y - 1]) {
+                res = false;
+            }
+        }
 
-
-           	return (npos);
+        if (dep == 'd') {
+            if (labybool[x][y + 1]) {
+                res = true;
+            }
+            if (!labybool[x][y + 1]) {
+                res = false;
+            }
+        }
+        return res;
     }
-    
+    public static boolean getRes() {
+        return res;
+    }
+    private static boolean erreur;
+    public static boolean getErreur(){
+        return erreur;
+    }
+
+    public static int[] Deplacement(boolean test) {
+        ancienDep = Joueur.getAncienDep();
+
+        if (dep == 'z' && test == true) {
+            npos[0] = npos[0] - 1;
+        }
+        if (dep == 's' && test == true) {
+            npos[0] = npos[0] + 1;
+        }
+        if (dep == 'q' && test == true) {
+            npos[1] = npos[1] - 1;
+        }
+        if (dep == 'd' && test == true) {
+            npos[1] = npos[1] + 1;
+        }
+        erreur = false;
+        if (test == false && ancienDep != dep) {
+
+            if (ancienDep == 'z') {
+                npos[0] = npos[0] - 1;
+            }
+            if (ancienDep == 's') {
+                npos[0] = npos[0] + 1;
+            }
+            if (ancienDep == 'q') {
+                npos[1] = npos[1] - 1;
+            }
+            if (ancienDep == 'd') {
+                npos[1] = npos[1] + 1;
+            }
+            erreur = true;
+        }
+
+        return (npos);
+    }
+
     public static int [] getPos(){
-    	return npos;
-    }
-    
-    public static void setPos(int [] npos){
-    	Pacman.npos = npos;
+        return npos;
     }
 }
