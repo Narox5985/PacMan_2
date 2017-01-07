@@ -37,7 +37,7 @@ public class Fenetre{
     }
 
     public static void main(String[] args) throws InterruptedException {
-        StdDraw.setCanvasSize(1200,1200);
+        StdDraw.setCanvasSize(700,800);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-32, 0);
         StdDraw.setPenColor(StdDraw.BLACK);
@@ -46,15 +46,13 @@ public class Fenetre{
 
         int [] pos = {24,14};
         int [] posfr = {14,11};
-        int [] posfb = {14, 13};
-        int [] posfv = {14, 15};
 
         StdDraw.show(0);
         Pacman.setPos(pos);
-        Laby.Afficher(Laby.Gene(pos, posfr, posfb, posfv));
+        Laby.Afficher(Laby.Gene(pos, posfr));
         draw();
 
-        char [][] laby = Laby.Gene(pos, posfr, posfb, posfv);
+        char [][] laby = Laby.Gene(pos, posfr);
         boolean [][] labybool = Laby.GeneBool(laby);
 
         Pacman.Deplacement(Pacman.Testdeplacement(labybool));

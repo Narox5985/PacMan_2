@@ -2,7 +2,7 @@ public class Laby {
 
 private static char[][] laby = new char [32][28];
 
-public static char [][] Gene(int [] pos, int [] posfb, int [] posfr, int [] posfv){
+public static char [][] Gene(int [] pos, int [] posfr){
 	
 
 	for (int i=0; i<28; i++ ){
@@ -467,11 +467,9 @@ public static char [][] Gene(int [] pos, int [] posfb, int [] posfr, int [] posf
 	}
 	laby[pos[0]][pos[1]] = 'D';
 
-    laby[posfb[0]][posfb[1]] = 'B';
 
     laby[posfr[0]][posfr[1]] = 'R' ;
 
-    laby[posfv[0]][posfv[1]] = 'O' ;
 
 
 	
