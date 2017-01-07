@@ -8,6 +8,9 @@ public class Pacman {
     public static void setPos(int[] npos) {
         Pacman.npos = npos;
     }
+    public static int [] getPos(){
+        return npos;
+    }
 
     public static boolean Testdeplacement(boolean labybool[][]) {
         dep = Joueur.getDep();
