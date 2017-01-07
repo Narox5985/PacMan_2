@@ -20,6 +20,9 @@ public class Fenetre{
                 if (laby[k][j] == 'P') {
                     StdDraw.picture(j + 0.5, -k - 0.5, "pastille.png", 0.2, 0.2);
                 }
+                if (laby[k][j] == 'R') {
+                    StdDraw.picture(j + 0.5, -k - 0.5, "fantomerouge.png", 0.8, 0.8);
+                }
             }
         }
         //Laby.Afficher(laby);

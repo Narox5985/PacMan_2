@@ -475,7 +475,7 @@ public class Laby {
 
 		for (int k=0; k<32; k++){
 			for (int j=0; j<28; j++){
-				if (laby[k][j]!='#' && laby[k][j]!='D'&& laby[k][j]!='V'){
+				if (laby[k][j]!='#' && laby[k][j]!='D'&& laby[k][j]!='V'&& laby[k][j]!='R'){
 					laby[k][j]='P';
 				}
 			}
@@ -485,14 +485,14 @@ public class Laby {
 			for (int j=0; j<28; j++){
 				if (k >9 && k < 20){
 					if (j<6 || j>21){
-						if (laby[k][j] != '#'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'){
 							laby[k][j]= ' ';
 						}
 					}
 				}
 				if ( k >8 && k < 21){
 					if (j>6 && j< 21){
-						if (laby[k][j] != '#'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'){
 							laby[k][j]= ' ';
 						}
 					}
