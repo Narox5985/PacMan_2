@@ -39,7 +39,6 @@ public class Fenetre{
 
         //StdDraw.show(0);
         Pacman.setPos(pos);
-
         Fantome.setPosfr(posfr);
 
         Laby.Afficher(Laby.Gene(pos, posfr));
