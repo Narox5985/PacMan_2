@@ -1,6 +1,5 @@
 import edu.princeton.cs.introcs.StdDraw;
 
-import java.util.Scanner;
 
 public class Pacman {
 
