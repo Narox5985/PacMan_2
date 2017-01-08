@@ -25,9 +25,9 @@ public class Fenetre{
                 if (laby[k][j] == 'F') {
                     StdDraw.picture(j + 0.5, -k - 0.5, "fantomebleu.png", 1.1, 1.1);
                 }
-                if (laby[k][j] == 'G') {
-                    StdDraw.picture(j + 0.5, -k - 0.5, "fantomeblanc.png", 1, 1);
-                }
+                //if (laby[k][j] == 'G') {
+                    //StdDraw.picture(j + 0.5, -k - 0.5, "fantomeblanc.png", 1, 1);
+               // }
                 if (laby[k][j] == 'O') {
                     StdDraw.picture(j + 0.5, -k - 0.5, "fantomevert.jpg", 1.1, 1.1);
                 }
@@ -40,7 +40,7 @@ public class Fenetre{
     public static void main(String[] args)  {
         int [] pos = {23,14};
         //int [] posfr = {11,14};
-        StdDraw.setCanvasSize(1200,1200);
+        StdDraw.setCanvasSize(700,800);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-31, 0);
         StdDraw.setPenColor(StdDraw.BLACK);
@@ -63,6 +63,8 @@ public class Fenetre{
             Joueur.cmdPacman();
             int [] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
             Fantome.deplacementDesFantomes();
+            Scores.Compte();
+            Scores.Vies();
             caractF = Fantome.getCaractF();
             Laby.Gene(npos, caractF);
             Fenetre.draw();

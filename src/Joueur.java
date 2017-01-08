@@ -24,7 +24,7 @@ public class Joueur {
 
 
 	public static void cmdPacman(){
-		if (Pacman.getErreur() == false && Pacman.getRes()== true) {
+		if (!Pacman.getErreur() && Pacman.getRes()) {
 			ancienDep = dep;
 		}
 		if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {

@@ -5,7 +5,6 @@ public class Pacman {
 
     private static char dep;
     private static int[] npos;
-    private static char ancienDep;
     private static  boolean res;
 
     public static void setPos(int[] npos) {
@@ -59,30 +58,30 @@ public class Pacman {
     }
 
     public static int[] Deplacement(boolean test) {
-        ancienDep = Joueur.getAncienDep();
+        char ancienDep = Joueur.getAncienDep();
 
-        if (dep == 'z' && test == true) {
+        if (dep == 'z' && test) {
             npos[0] = npos[0] - 1;
         }
-        if (dep == 's' && test == true) {
+        if (dep == 's' && test) {
             npos[0] = npos[0] + 1;
         }
-        if (dep == 'q' && test == true) {
+        if (dep == 'q' && test) {
             npos[1] = npos[1] - 1;
         }
-        if (dep == 'd' && test == true) {
+        if (dep == 'd' && test) {
             npos[1] = npos[1] + 1;
         }
 
-        if(dep == 'q' && npos[0]==15 && npos[1] == 0 && test == true){
+        if(dep == 'q' && npos[0]==15 && npos[1] == 0 && test){
             npos[1] = 27;
         }
-        if(dep == 'd' && npos[0]==15 && npos[1] == 27 && test == true){
+        if(dep == 'd' && npos[0]==15 && npos[1] == 27 && test){
             npos[1] = 0;
         }
         erreur = false;
 
-        if (test == false && ancienDep != dep) {
+        if (!test && ancienDep != dep) {
 
             if (ancienDep == 'z') {
                 npos[0] = npos[0] - 1;
