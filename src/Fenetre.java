@@ -47,7 +47,6 @@ public class Fenetre{
 
     public static void main(String[] args)  {
         int [] pos = {23,14};
-        //int [] posfr = {11,14};
         StdDraw.setCanvasSize(1200,1200);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-31, 0);
