@@ -8,28 +8,38 @@ public class Fantome {
 
     public static int[][] initialisationF() {
         caractF = new int[4][4];
+        //caractF[0][0] = 1;
         for (int i = 0; i < 4; i++) {
             caractF[0][i] = 0;
         }
         caractF[2][0] = 11;
         for (int i = 1; i < 4; i++) {
-            caractF[2][i] = 15;
+            caractF[2][i] = 14;
         }
         caractF[3][0] = 14;
-        caractF[3][1] = 11;
-        caractF[3][2] = 13;
+        caractF[3][1] = 13;
+        caractF[3][2] = 12;
         caractF[3][3] = 15;
-        //fant => choix du fantome (entre 0 et 3)
-        //ancienneDir = caractF[0][fant]
-        // dir =caractF[1][fant]
-        //position y = caractF[2][fant]
-        //position x = caractF[3][fant]
+
         return caractF;
     }
 
 
+    // public static void setPosfr(int[] nposfr) {
+    //     Fantome.nposfr = nposfr;
+    // }
+    //  public static int [] getPosfr (){
+    //    return nposfr;
+    //}
+
+    // public static void setAncienneDir(char ancienneDir){
+    //     Fantome.ancienneDir = ancienneDir;
+    // }
+
     //static Random random = new Random(System.currentTimeMillis());
     private static Random random = new Random();
+    // private static char dir;
+    //private static char ancienneDir;
 
     // Direction :
     // z = 0
@@ -42,26 +52,42 @@ public class Fantome {
     }
 
 
-    public static void TestDeplacementF(boolean labybool[][], int fant) {
-        caractF[1][fant] = directionFantome();
+    public static void TestDeplacementF(boolean labybool[][], int fant, int directionFantome) {
+        caractF[1][fant] = directionFantome;
 
         int x = caractF[2][fant];
         int y = caractF[3][fant];
 
         boolean res = false;
-        if (caractF[1][fant] == 0 && caractF[0][fant] != 1 ) {
+        if (caractF[1][fant] == 0 && caractF[0][fant] != 1) {
             if (labybool[x - 1][y]) {
                 res = true;
             }
+            if (!labybool[x - 1][y]) {
+                res = false;
+            }
+            if(caractF[2][fant]==13 && caractF[3][fant]==13) {
+                res = true;
+            }
+            if(caractF[2][fant]==13 && caractF[3][fant]==14) {
+                res = true;
+            }
+
         }
         if (caractF[1][fant] == 1 && caractF[0][fant] != 0) {
             if (labybool[x + 1][y]) {
                 res = true;
             }
+            if (!labybool[x + 1][y]) {
+                res = false;
+            }
         }
         if (caractF[1][fant] == 2 && caractF[0][fant] != 3 ) {
             if (labybool[x][y - 1]) {
                 res = true;
+            }
+            if (!labybool[x][y - 1]) {
+                res = false;
             }
             if( x == 15 && y == 0){
                 res = true;
@@ -71,19 +97,21 @@ public class Fantome {
             if (labybool[x][y + 1]) {
                 res = true;
             }
+            if (!labybool[x][y + 1]) {
+                res = false;
+            }
             if( x == 15 && y == 27){
                 res = true;
             }
         }
 
         if (res == false){
-            directionFantome();
-            TestDeplacementF(Laby.getLabybool(), fant);
+            TestDeplacementF(Laby.getLabybool(), fant, directionFantome());
         }
     }
-    public static void DeplacementF(int fant) {
-        TestDeplacementF(Laby.getLabybool(),fant);
-
+    public static void DeplacementF(int fant, int dir) {
+        TestDeplacementF(Laby.getLabybool(),fant, dir);
+        //ancienneDir = dir;
         caractF[0][fant] = caractF[1][fant];
 
         if (caractF[1][fant] == 0) {
@@ -105,11 +133,27 @@ public class Fantome {
         if(caractF[1][fant] == 3 && caractF[2][fant]==14 && caractF[3][fant] == 27 ){
             caractF[3][fant] = 0;
         }
-
+        // int [] tabpos= new int [2];
+        //  tabpos[0] = caractF[2][fant];
+        //   tabpos[1]=caractF[3][fant]
+        //return (caractF);
     }
-    public static void deplacementDesFantomes() {
-        for (int k = 0; k < 4; k++){
-            DeplacementF(k);
+    public static void deplacementDesFantomes(int numFantDeb, int numFantFin) {
+        for (int k = numFantDeb; k <= numFantFin; k++){
+            int dir = directionFantome();
+            DeplacementF(k, dir);
+        }
+    }
+
+    public static void deplacementIni(int fant, char dir){
+        if(dir == 'z') {
+
+        }
+        if(dir == 'q') {
+            caractF[3][fant] = caractF[3][fant] - 1;
+        }
+        if(dir == 'd') {
+            caractF[3][fant] = caractF[3][fant] + 1;
         }
     }
     public static int [][] getCaractF(){

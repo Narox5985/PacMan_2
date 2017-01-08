@@ -5,7 +5,7 @@ public class Laby {
 	private static char[][] laby = new char [31][28];
 
 
-	public static char [][] Gene(int [] pos, int [][] caractF){
+	public static char [][] Gene(int [] pos, int [][] caractF, boolean fermetureCage){
 
 
 		for (int i=0; i<28; i++ ){
@@ -480,6 +480,9 @@ public class Laby {
 				}
 			}
 		}
+		laby[12][13]='N';
+		laby[12][14]='N';
+
 		laby[caractF[2][0]][caractF[3][0]] = 'R';
 		laby[caractF[2][1]][caractF[3][1]] = 'F';
 		laby[caractF[2][2]][caractF[3][2]] = 'G';
@@ -489,14 +492,14 @@ public class Laby {
 			for (int j=0; j<28; j++){
 				if (k >9 && k < 20){
 					if (j<6 || j>21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O'&& laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
 				}
 				if ( k >8 && k < 21){
 					if (j>6 && j< 21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O' && laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
@@ -504,8 +507,14 @@ public class Laby {
 			}
 		}
 
+
+		if (fermetureCage){
+			laby[12][13]='M';
+			laby[12][14]='M';
+		}
 		return(laby);
 	}
+
 
 	private static boolean [][] labybool;
 
@@ -513,11 +522,11 @@ public class Laby {
 		labybool = new boolean [31][28];
 		for (int k =0; k<31; k ++){
 			for (int j=0; j <28; j++){
-				if (laby [k][j] == '#'){
-					if(k > 14 && k < 18)
-						if (j > 11 && j < 18)
-							labybool[k][j] = false;
+
+				if ((laby [k][j] == '#' || laby[k][j] == 'N'|| laby[k][j] == 'M')){
+					labybool[k][j] = false;
 				}
+
 				else{
 					labybool[k][j] = true;
 				}
