@@ -18,7 +18,6 @@ public class Pacman {
         dep = Joueur.getDep();
         int x = npos[0];
         int y = npos[1];
-        System.out.println(x + "=========" + y);
         res = false;
         if (dep == 'z') {
             if (labybool[x - 1][y]) {

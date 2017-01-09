@@ -8,7 +8,6 @@ public class Fantome {
 
     public static int[][] initialisationF() {
         caractF = new int[4][4];
-        //caractF[0][0] = 1;
         for (int i = 0; i < 4; i++) {
             caractF[0][i] = 0;
         }
@@ -23,18 +22,6 @@ public class Fantome {
 
         return caractF;
     }
-
-
-    // public static void setPosfr(int[] nposfr) {
-    //     Fantome.nposfr = nposfr;
-    // }
-    //  public static int [] getPosfr (){
-    //    return nposfr;
-    //}
-
-    // public static void setAncienneDir(char ancienneDir){
-    //     Fantome.ancienneDir = ancienneDir;
-    // }
 
     //static Random random = new Random(System.currentTimeMillis());
     private static Random random = new Random();
@@ -133,10 +120,6 @@ public class Fantome {
         if(caractF[1][fant] == 3 && caractF[2][fant]==14 && caractF[3][fant] == 27 ){
             caractF[3][fant] = 0;
         }
-        // int [] tabpos= new int [2];
-        //  tabpos[0] = caractF[2][fant];
-        //   tabpos[1]=caractF[3][fant]
-        //return (caractF);
     }
     public static void deplacementDesFantomes(int numFantDeb, int numFantFin) {
         for (int k = numFantDeb; k <= numFantFin; k++){

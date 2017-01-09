@@ -18,6 +18,7 @@ public class Scores {
         }
         return (compte);
     }
+    private static int vies = 3;
 
     public static int Vies() {
 
@@ -25,25 +26,12 @@ public class Scores {
 
         int[][] caractF = Fantome.getCaractF();
 
-        int vies = 3;
-
-        if ((caractF[2][0] == pos[0]) && (caractF[3][0] == pos[1])) {
-            vies = vies - 1;
-            System.out.println("Le nombre de vies est de " + vies);
+        for (int k = 0; k < 4; k++) {
+            if ((caractF[2][k] == pos[0]) && (caractF[3][k] == pos[1])) {
+                vies = vies - 1;
+                System.out.println("Le nombre de vies est de " + vies);
+            }
         }
-        if ((caractF[2][1] == pos[0]) && (caractF[3][1] == pos[1])) {
-            vies = vies - 1;
-            System.out.println("Le nombre de vies est de " + vies);
-        }
-        if ((caractF[2][2] == pos[0]) && (caractF[3][2] == pos[1])) {
-            vies = vies - 1;
-            System.out.println("Le nombre de vies est de " + vies);
-        }
-        if ((caractF[2][3] == pos[0]) && (caractF[3][3] == pos[1])) {
-            vies = vies - 1;
-            System.out.println("Le nombre de vies est de " + vies);
-        }
-
         return (vies);
     }
 

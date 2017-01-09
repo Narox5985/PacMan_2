@@ -457,10 +457,6 @@ public class Laby {
 		laby[13][17]='#';
 		laby[12][17]='#';
 
-		//int tab [] = new int [2];
-		//tab = Pacman.getPos();
-		//laby[24][14] = 'D';
-
 		for (int k=0; k<31; k++){
 			for (int j=0; j<28; j++){
 				if (laby[k][j]=='D'){
@@ -470,8 +466,6 @@ public class Laby {
 		}
 		laby[pos[0]][pos[1]] = 'D';
 
-
-		//System.out.print(tab [0] + "=======" + tab[1]);
 
 		for (int k=0; k<31; k++){
 			for (int j=0; j<28; j++){
@@ -483,23 +477,18 @@ public class Laby {
 		laby[12][13]='N';
 		laby[12][14]='N';
 
-		laby[caractF[2][0]][caractF[3][0]] = 'R';
-		laby[caractF[2][1]][caractF[3][1]] = 'F';
-		laby[caractF[2][2]][caractF[3][2]] = 'G';
-		laby[caractF[2][3]][caractF[3][3]] = 'O';
-
 		for (int k=9; k<31; k++){
 			for (int j=0; j<28; j++){
 				if (k >9 && k < 20){
 					if (j<6 || j>21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O'&& laby[k][j]!='N'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&&  laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
 				}
 				if ( k >8 && k < 21){
 					if (j>6 && j< 21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='R'&& laby[k][j]!='F'&& laby[k][j]!='G'&& laby[k][j]!='O' && laby[k][j]!='N'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D' && laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
@@ -568,33 +557,6 @@ public class Laby {
 	public static boolean [][] getLabybool(){
 		return labybool;
 	}
-//public static void main(String[] args){
-	//Afficher(Gene(Pacman.getPos()));
-	//Afficherbool(GeneBool(Gene()));
-//}
-
-
-
-
-
-//Graphics g;
-
-//public void ConstGraph(char laby [][]){
-	//for (int k=0; k<9; k++){
-	//for (int j=0; j<9; j++){
-	//if (laby[k][j] == '#'){
-	//Panneau.setX(k*100);
-	//Panneau.setY(j*100);
-	//Panneau.paintComponent(g);
-	//}
-	//	}
-	//}
-
-//}
-
-//public static void main(String[] args){
-	//Afficher(Gene());
-//}
 
 
 }
