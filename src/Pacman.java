@@ -1,5 +1,5 @@
 /**
- * Created by rivie_000 on 07/01/2017.
+ * Created by benoit on 07/01/2017.
  */
 public class Pacman {
 
