@@ -121,8 +121,8 @@ public class Fenetre{
                 StdDraw.setPenColor(StdDraw.WHITE);
                 StdDraw.textLeft(10,-35, "Score : " + points);
                 StdDraw.setPenColor(StdDraw.WHITE);
-                StdDraw.textLeft(19,-33, "Le PACMAN de");
-                StdDraw.textLeft(19.25,-34, "TOTO et BEN");
+                StdDraw.textLeft(19,-35, "Le PACMAN de");
+                StdDraw.textLeft(19.25,-36, "TOTO et BEN");
 
 
             }
@@ -142,13 +142,13 @@ public class Fenetre{
             StdDraw.pause(10);
             StdDraw.clear(StdDraw.BLACK);
             StdDraw.setPenColor(StdDraw.BLUE);
-            StdDraw.filledRectangle(25,-38, 28,7);
+            StdDraw.filledRectangle(24,-38, 28,5);
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(2,-35, "Vies : " + vies);
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(10,-35, "Score : " + points);
-            StdDraw.textLeft(19,-33, "Le PACMAN de");
-            StdDraw.textLeft(19.25,-34, "TOTO et BEN");
+            StdDraw.textLeft(19,-35, "Le PACMAN de");
+            StdDraw.textLeft(19.25,-36, "TOTO et BEN");
             StdDraw.rectangle(25,-38,28,7);
 
         }
