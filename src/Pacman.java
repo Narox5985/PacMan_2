@@ -73,10 +73,10 @@ public class Pacman {
             npos[1] = npos[1] + 1;
         }
 
-        if(dep == 'q' && npos[0]==15 && npos[1] == 0 && test){
+        if(dep == 'q' && npos[0]==14 && npos[1] == 0 && test){
             npos[1] = 27;
         }
-        if(dep == 'd' && npos[0]==15 && npos[1] == 27 && test){
+        if(dep == 'd' && npos[0]==14 && npos[1] == 27 && test){
             npos[1] = 0;
         }
         erreur = false;

@@ -6,6 +6,7 @@ public class Fenetre{
     static char [][] laby;
 
     public static void draw() {
+        StdDraw.enableDoubleBuffering();
         laby = Laby.getLaby();
         StdDraw.setPenColor(0,39,218);
         for (int k=0; k<31; k++) {
@@ -37,8 +38,11 @@ public class Fenetre{
                 }
             }
         }
+        StdDraw.show(200);
+        StdDraw.pause(10);
+
         //Laby.Afficher(laby);
-        StdDraw.show(0);
+        //StdDraw.show(0);
     }
     //private static char ancienneDir = 'z';
 
@@ -52,18 +56,18 @@ public class Fenetre{
         StdDraw.setYscale(-31, 0);
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.filledRectangle(14,-16, 14,16);
-        StdDraw.enableDoubleBuffering();
+
 
 
         //StdDraw.show(0);
         Pacman.setPos(pos);
-        //Fantome.setPosfr(posfr);
-        //Fantome.setAncienneDir(ancienneDir);
+
+
         int [][] caractF = Fantome.initialisationF();
         Laby.Afficher(Laby.Gene(pos, caractF,false));
         draw();
-        StdDraw.show(200);
-        StdDraw.pause(10);
+        //StdDraw.show(200);
+        //StdDraw.pause(10);
         StdDraw.clear(StdDraw.BLACK);
 
         char [][] laby = Laby.Gene(pos, caractF,false);
@@ -103,8 +107,8 @@ public class Fenetre{
                 caractF = Fantome.getCaractF();
                 Laby.Gene(npos, caractF,false);
                 Fenetre.draw();
-                StdDraw.show(200);
-                StdDraw.pause(10);
+                //StdDraw.show(200);
+                //StdDraw.pause(10);
                 StdDraw.clear(StdDraw.BLACK);
             }
         }
