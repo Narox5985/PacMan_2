@@ -52,7 +52,9 @@ public class Pacman {
     public static boolean getRes() {
         return res;
     }
+
     private static boolean erreur;
+
     public static boolean getErreur(){
         return erreur;
     }

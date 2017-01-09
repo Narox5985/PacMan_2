@@ -1,9 +1,14 @@
 
 import edu.princeton.cs.introcs.StdDraw;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Fenetre{
     public static char val = 'q';
     static char [][] laby;
+    private static Icon Jouer;
+
 
     public static void draw() {
         StdDraw.enableDoubleBuffering();
@@ -51,6 +56,15 @@ public class Fenetre{
 
     public static void main(String[] args)  {
         int [] pos = {23,14};
+
+
+        JOptionPane jop = new JOptionPane();
+        ImageIcon img = new ImageIcon("imagepacman.png");
+        String nom = jop.showInputDialog(null, "Choisissez un pseudo !", "PACMAN !", JOptionPane.QUESTION_MESSAGE);
+
+
+
+
         StdDraw.setCanvasSize(700,700);
         StdDraw.setXscale(0, 28);
         StdDraw.setYscale(-38, 0);
@@ -82,6 +96,8 @@ public class Fenetre{
             long t = System.currentTimeMillis();
             long end = t + 3000;
             while (System.currentTimeMillis() < end) {
+                int compte =Scores.Compte();
+
                 Joueur.cmdPacman();
                 int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
                 if(k!=1 && i!=0) {
@@ -108,9 +124,28 @@ public class Fenetre{
                 }
                 caractF = Fantome.getCaractF();
                 Laby.Gene(npos, caractF,false);
+
                 int vies = Scores.Vies();
-                int points = Scores.Compte();
+
+                if ((caractF[2][0] == pos[0]) && (caractF[3][0] == pos[1])) {
+                    System.out.println("Meme position avec fantome R");
+                }
+                if ((caractF[2][1] == pos[0]) && (caractF[3][1] == pos[1])) {
+                    System.out.println("Meme position avec fantome B");
+                }
+                if ((caractF[2][2] == pos[0]) && (caractF[3][2] == pos[1])) {
+                    System.out.println("Meme position avec fantome G");
+                }
+                if ((caractF[2][3] == pos[0]) && (caractF[3][3] == pos[1])) {
+                    System.out.println("Meme position avec fantome O");
+                }
+
                 Fenetre.draw();
+
+
+
+
+
                 //StdDraw.show(200);
                 //StdDraw.pause(10);
                 StdDraw.clear(StdDraw.BLACK);
@@ -119,23 +154,39 @@ public class Fenetre{
                 StdDraw.setPenColor(StdDraw.WHITE);
                 StdDraw.textLeft(2,-35, "Vies : " + vies);
                 StdDraw.setPenColor(StdDraw.WHITE);
-                StdDraw.textLeft(10,-35, "Score : " + points);
+                StdDraw.textLeft(10,-35, "Score : " + compte );
+                StdDraw.picture(8,-35, "Pastille.png", 1, 1);
                 StdDraw.setPenColor(StdDraw.WHITE);
                 StdDraw.textLeft(19,-35, "Le PACMAN de");
-                StdDraw.textLeft(19.25,-36, "TOTO et BEN");
+                StdDraw.textLeft(19.25,-36, nom);
 
 
             }
         }
         while(true){
+
             Joueur.cmdPacman();
+            int compte = Scores.Compte();
             int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
             Fantome.deplacementDesFantomes(0,3);
             caractF = Fantome.getCaractF();
             Laby.Gene(npos, caractF, true);
             labybool = Laby.GeneBool(laby);
             int vies = Scores.Vies();
-            int points = Scores.Compte();
+
+            if ((caractF[2][0] == pos[0]) && (caractF[3][0] == pos[1])) {
+                System.out.println("Meme position avec fantome R");
+            }
+            if ((caractF[2][1] == pos[0]) && (caractF[3][1] == pos[1])) {
+                System.out.println("Meme position avec fantome B");
+            }
+            if ((caractF[2][2] == pos[0]) && (caractF[3][2] == pos[1])) {
+                System.out.println("Meme position avec fantome G");
+            }
+            if ((caractF[2][3] == pos[0]) && (caractF[3][3] == pos[1])) {
+                System.out.println("Meme position avec fantome O");
+            }
+
 
             Fenetre.draw();
             StdDraw.show(200);
@@ -146,9 +197,10 @@ public class Fenetre{
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(2,-35, "Vies : " + vies);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.textLeft(10,-35, "Score : " + points);
+            StdDraw.textLeft(10,-35, "Score : " + compte );
+            StdDraw.picture(8,-35, "Pastille.png", 1, 1);
             StdDraw.textLeft(19,-35, "Le PACMAN de");
-            StdDraw.textLeft(19.25,-36, "TOTO et BEN");
+            StdDraw.textLeft(19.25,-36, nom);
             StdDraw.rectangle(25,-38,28,7);
 
         }
