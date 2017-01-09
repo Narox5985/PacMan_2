@@ -28,7 +28,7 @@ public class Fenetre{
                     StdDraw.picture(j + 0.5, -k - 0.5, "fantomebleu.png", 1.1, 1.1);
                 }
                 if (laby[k][j] == 'G') {
-                    StdDraw.picture(j + 0.5, -k - 0.5, "fantomeblanc.png", 1, 1);
+                    StdDraw.picture(j + 0.5, -k - 0.5, "Fantomeblanc.png", 1, 1);
                 }
                 if (laby[k][j] == 'O') {
                     StdDraw.picture(j + 0.5, -k - 0.5, "fantomevert.jpg", 1.1, 1.1);
@@ -51,11 +51,13 @@ public class Fenetre{
 
     public static void main(String[] args)  {
         int [] pos = {23,14};
-        StdDraw.setCanvasSize(1200,1200);
+        StdDraw.setCanvasSize(700,700);
         StdDraw.setXscale(0, 28);
-        StdDraw.setYscale(-31, 0);
+        StdDraw.setYscale(-38, 0);
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.filledRectangle(14,-16, 14,16);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.filledRectangle(25,-26, 14,16);
 
 
 
@@ -106,10 +108,23 @@ public class Fenetre{
                 }
                 caractF = Fantome.getCaractF();
                 Laby.Gene(npos, caractF,false);
+                int vies = Scores.Vies();
+                int points = Scores.Compte();
                 Fenetre.draw();
                 //StdDraw.show(200);
                 //StdDraw.pause(10);
                 StdDraw.clear(StdDraw.BLACK);
+                StdDraw.setPenColor(StdDraw.BLUE);
+                StdDraw.filledRectangle(24,-38, 28,5);
+                StdDraw.setPenColor(StdDraw.WHITE);
+                StdDraw.textLeft(2,-35, "Vies : " + vies);
+                StdDraw.setPenColor(StdDraw.WHITE);
+                StdDraw.textLeft(10,-35, "Score : " + points);
+                StdDraw.setPenColor(StdDraw.WHITE);
+                StdDraw.textLeft(19,-33, "Le PACMAN de");
+                StdDraw.textLeft(19.25,-34, "TOTO et BEN");
+
+
             }
         }
         while(true){
@@ -119,10 +134,23 @@ public class Fenetre{
             caractF = Fantome.getCaractF();
             Laby.Gene(npos, caractF, true);
             labybool = Laby.GeneBool(laby);
+            int vies = Scores.Vies();
+            int points = Scores.Compte();
+
             Fenetre.draw();
             StdDraw.show(200);
             StdDraw.pause(10);
             StdDraw.clear(StdDraw.BLACK);
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.filledRectangle(25,-38, 28,7);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(2,-35, "Vies : " + vies);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(10,-35, "Score : " + points);
+            StdDraw.textLeft(19,-33, "Le PACMAN de");
+            StdDraw.textLeft(19.25,-34, "TOTO et BEN");
+            StdDraw.rectangle(25,-38,28,7);
+
         }
     }
 
