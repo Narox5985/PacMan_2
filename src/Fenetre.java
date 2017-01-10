@@ -54,7 +54,7 @@ public class Fenetre{
         StdDraw.picture(8,-35, "Pastille.png", 1, 1);
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.textLeft(19,-35, "Le PACMAN de");
-        StdDraw.textLeft(19.25,-36, nom);
+        StdDraw.textLeft(22,-36, nom);
 
         StdDraw.show(200);
         StdDraw.pause(10);
@@ -131,20 +131,6 @@ public class Fenetre{
                 Laby.Gene(npos, caractF,false);
 
 
-
-                if ((caractF[2][0] == pos[0]) && (caractF[3][0] == pos[1])) {
-                    System.out.println("Meme position avec fantome R");
-                }
-                if ((caractF[2][1] == pos[0]) && (caractF[3][1] == pos[1])) {
-                    System.out.println("Meme position avec fantome B");
-                }
-                if ((caractF[2][2] == pos[0]) && (caractF[3][2] == pos[1])) {
-                    System.out.println("Meme position avec fantome G");
-                }
-                if ((caractF[2][3] == pos[0]) && (caractF[3][3] == pos[1])) {
-                    System.out.println("Meme position avec fantome O");
-                }
-
                 Fenetre.draw();
                 StdDraw.clear(StdDraw.BLACK);
 
@@ -159,18 +145,6 @@ public class Fenetre{
             Laby.Gene(npos, caractF, true);
             labybool = Laby.GeneBool(laby);
 
-            if ((caractF[2][0] == pos[0]) && (caractF[3][0] == pos[1])) {
-                System.out.println("Meme position avec fantome R");
-            }
-            if ((caractF[2][1] == pos[0]) && (caractF[3][1] == pos[1])) {
-                System.out.println("Meme position avec fantome B");
-            }
-            if ((caractF[2][2] == pos[0]) && (caractF[3][2] == pos[1])) {
-                System.out.println("Meme position avec fantome G");
-            }
-            if ((caractF[2][3] == pos[0]) && (caractF[3][3] == pos[1])) {
-                System.out.println("Meme position avec fantome O");
-            }
             Fenetre.draw();
             StdDraw.clear(StdDraw.BLACK);
 
