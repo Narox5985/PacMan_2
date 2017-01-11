@@ -505,6 +505,7 @@ public class Laby {
 	}
 
 
+
 	private static boolean [][] labybool;
 
 	public static boolean [][] GeneBool(char laby [][]){

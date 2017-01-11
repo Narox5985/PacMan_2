@@ -19,6 +19,7 @@ public class Fenetre {
             int[][] caractF = Fantome.getCaractF();
             int compte = Scores.Compte();
             int vies = Scores.Vies();
+            char dir = Joueur.getDep();
 
 
             StdDraw.enableDoubleBuffering();
@@ -28,9 +29,21 @@ public class Fenetre {
                     if (laby[k][j] == '#') {
                         StdDraw.rectangle(j + 0.5, -k - 0.5, 0.5, 0.5);
                     }
-                    if (laby[k][j] == 'D') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacman.png", 2, 2);
+
+                    if (laby[k][j] == 'D'&& dir == 'z') {
+                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanH.png", 2, 2);
                     }
+                    if (laby[k][j] == 'D'&& dir == 'd') {
+                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanD.png", 2, 2);
+                    }
+                    if (laby[k][j] == 'D'&& dir == 's') {
+                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanB.png", 2, 2);
+                    }
+                    if (laby[k][j] == 'D'&& dir == 'q') {
+                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanG.png", 2, 2);
+                    }
+
+
                     if (laby[k][j] == 'P') {
                         StdDraw.picture(j + 0.5, -k - 0.5, "pastille.png", 0.2, 0.2);
                     }
@@ -55,7 +68,7 @@ public class Fenetre {
             StdDraw.filledRectangle(24, -38, 28, 5);
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(2, -35, "Vies : " + vies);
-            StdDraw.picture(1, -35, "cerises.png", 1, 1);
+           // StdDraw.picture(1, -35, "cerises.png", 1, 1);
             StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(10, -35, "Score : " + compte);
             StdDraw.picture(8, -35, "Pastille.png", 1, 1);

@@ -45,7 +45,6 @@ public class Pacman {
                 res = true;
             }
         }
-        System.out.println(res);
         return res;
     }
     public static boolean getRes() {
