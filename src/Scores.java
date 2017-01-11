@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 /**
  * Created by benoit on 08/01/2017.
  */
@@ -10,14 +12,31 @@ public class Scores {
         for (int k = 0; k < 31; k++) {
             for (int j = 0; j < 28; j++) {
                 if (laby[k][j] == 'V') {
-                    {
                         compte = compte + 1;
-                    }
                 }
             }
         }
+
         return (compte);
     }
+private static int vic =0;
+    public static boolean CompteurVictoire(){
+        boolean plusdeP = false;
+    char[][] laby = Laby.getLaby();
+        for (int k = 0; k < 31; k++) {
+        for (int j = 0; j < 28; j++) {
+            if (laby[k][j] == 'P') {
+                vic = vic + 1;
+            }
+        }
+    }
+    if (vic == 0){
+            plusdeP = true;
+    }
+
+    return (plusdeP);
+}
+
     private static int vies = 3;
 
     public static int Vies() {
@@ -29,9 +48,13 @@ public class Scores {
         for (int k = 0; k < 4; k++) {
             if ((caractF[2][k] == pos[0]) && (caractF[3][k] == pos[1])) {
                 vies = vies - 1;
-                System.out.println("Le nombre de vies est de " + vies);
             }
         }
+
+        if (vies == 0){
+                        // ferme les fenetres
+        }
+
         return (vies);
     }
 
