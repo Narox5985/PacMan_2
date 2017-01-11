@@ -87,6 +87,8 @@ public class Fenetre {
 
 
             JOptionPane jop = new JOptionPane();
+            ImageIcon toto = new ImageIcon("Toto.jpg");
+            ImageIcon resultat2 = new ImageIcon(toto.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
             String nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
 
 
