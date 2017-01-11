@@ -1,11 +1,15 @@
 /**
- * Created by benoit on 07/01/2017.
+ * Created by rivie_000 on 07/01/2017.
  */
 public class Pacman {
 
     private static char dep;
     private static int[] npos;
     private static  boolean res;
+    private static char ancienDep;
+    private static char dirpac;
+    private static int[] anciennePos = new int[2];
+
 
     public static void setPos(int[] npos) {
         Pacman.npos = npos;
@@ -50,7 +54,16 @@ public class Pacman {
     public static boolean getRes() {
         return res;
     }
+    public static char getDirPac() {
+        return dirpac;
+    }
 
+    public static int[] getAnciennePos() {
+        return anciennePos;
+    }
+    public static int[] getNPos() {
+        return npos;
+    }
     private static boolean erreur;
 
     public static boolean getErreur(){
@@ -58,54 +71,66 @@ public class Pacman {
     }
 
     public static int[] Deplacement(boolean test) {
-        char ancienDep = Joueur.getAncienDep();
+        dirpac = 'r';
+        anciennePos[0] = npos[0];
+        anciennePos[1] = npos[1];
+        ancienDep = Joueur.getAncienDep();
 
-        if (dep == 'z' && test) {
+        if (dep == 'z' && test == true) {
             npos[0] = npos[0] - 1;
+            dirpac = 'z';
         }
-        if (dep == 's' && test) {
+        if (dep == 's' && test == true) {
             npos[0] = npos[0] + 1;
+            dirpac = 's';
         }
-        if (dep == 'q' && test) {
+        if (dep == 'q' && test == true) {
             npos[1] = npos[1] - 1;
+            dirpac = 'q';
         }
-        if (dep == 'd' && test) {
+        if (dep == 'd' && test == true) {
             npos[1] = npos[1] + 1;
+            dirpac = 'd';
         }
 
-        if(dep == 'q' && npos[0]==14 && npos[1] == 0 && test){
+        if (dep == 'q' && npos[0] == 14 && npos[1] == 0 && test == true) {
             npos[1] = 27;
+            dirpac = 'q';
         }
-        if(dep == 'd' && npos[0]==14 && npos[1] == 27 && test){
+        if (dep == 'd' && npos[0] == 14 && npos[1] == 27 && test == true) {
             npos[1] = 0;
+            dirpac = 'd';
         }
         erreur = false;
 
-        if (!test && ancienDep != dep) {
+        if (test == false && ancienDep != dep) {
 
             if (ancienDep == 'z') {
                 npos[0] = npos[0] - 1;
+                dirpac = 'z';
             }
             if (ancienDep == 's') {
                 npos[0] = npos[0] + 1;
+                dirpac = 's';
             }
             if (ancienDep == 'q') {
-                if(npos[1]==0){
+                if (npos[1] == 0) {
                     npos[1] = 27;
-                }
-                else {
+                } else {
                     npos[1] = npos[1] - 1;
                 }
+                dirpac = 'q';
             }
             if (ancienDep == 'd') {
-                if (npos[1] == 27){
+                if (npos[1] == 27) {
                     npos[1] = 0;
-                }
-                else {
+                } else {
                     npos[1] = npos[1] + 1;
                 }
+                dirpac = 'd';
             }
             erreur = true;
+
         }
 
         return (npos);

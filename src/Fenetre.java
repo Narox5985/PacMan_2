@@ -11,78 +11,162 @@ import javax.swing.JOptionPane;
 public class Fenetre {
         public static char val = 'q';
         static char[][] laby;
+        private static char t= 'w';
         private static Icon Jouer;
 
 
-        public static void draw(String nom) {
-            laby = Laby.getLaby();
-            int[][] caractF = Fantome.getCaractF();
-            int compte = Scores.Compte();
-            int vies = Scores.Vies();
-            char dir = Joueur.getDep();
+    public static void affichePacman(char [][] laby, int k, int j, int w) {
+        char dirpac = Pacman.getDirPac();
+        int[] anciennePos = Pacman.getAnciennePos();
+        int nk = anciennePos[0];
+        int nj = anciennePos[1];
+        int [] npos = Pacman.getNPos();
 
 
-            StdDraw.enableDoubleBuffering();
+        if (k == anciennePos[0] && j == anciennePos[1]) {
+            if (dirpac == 'z') {
+                StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 18, 18);
+                t='z';
+            }
+            if (dirpac == 's') {
+                StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacmanB.png", 18, 18);
+                t='s';
+            }
+            if (dirpac == 'q') {
+                StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacmanG.png", 18, 18);
+                t='q';
+            }
+            if (dirpac == 'd') {
+                StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacmanD.png", 18, 18);
+                t='d';
+            }
+            if (dirpac == 'r') {
+                if ( t == 'z') {
+                    StdDraw.picture(nj * 10 + 5, -10 *nk - 5, "imagepacmanH.png", 18, 18);
+                }
+                if ( t == 's') {
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5 , "imagepacmanB.png", 18, 18);
+                }
+                if ( t == 'q') {
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 18, 18);
+                }
+                if ( t == 'd') {
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 18, 18);
+                }
+            }
+        }
+
+
+    }
+
+
+    public static void draw(String nom) {
+        laby = Laby.getLaby();
+        int[][] caractF = Fantome.getCaractF();
+        int compte = Scores.Compte();
+        int vies = Scores.Vies();
+        char dir = Joueur.getDep();
+
+        StdDraw.setPenColor(0, 39, 218);
+        for (int w = 1; w <= 10; w++) {
             for (int k = 0; k < 31; k++) {
                 for (int j = 0; j < 28; j++) {
                     StdDraw.setPenColor(0, 39, 218);
                     if (laby[k][j] == '#') {
-                        StdDraw.rectangle(j + 0.5, -k - 0.5, 0.5, 0.5);
+                        StdDraw.rectangle(j * 10 + 5, -10 * k - 5, 5, 5);
                     }
-
-                    if (laby[k][j] == 'D'&& dir == 'z') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanH.png", 2, 2);
-                    }
-                    if (laby[k][j] == 'D'&& dir == 'd') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanD.png", 2, 2);
-                    }
-                    if (laby[k][j] == 'D'&& dir == 's') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanB.png", 2, 2);
-                    }
-                    if (laby[k][j] == 'D'&& dir == 'q') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "imagepacmanG.png", 2, 2);
-                    }
-
-
                     if (laby[k][j] == 'P') {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "pastille.png", 0.2, 0.2);
+                        StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 2, 2);
                     }
-                    if (k == caractF[2][0] && j == caractF[3][0]) {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "fantomerouge.png", 1.1, 1.1);
+
+
+                    affichePacman(laby, k, j, w);
+                    if (k == caractF[4][0] && j == caractF[5][0]) {
+                        if(caractF[1][0] == 0) {
+                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomerouge.png", 11, 11);
+                        }
+                        if(caractF[1][0] == 1) {
+                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomerouge.png", 11, 11);
+                        }
+                        if(caractF[1][0] == 2) {
+                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomerouge.png", 11, 11);
+                        }
+                        if(caractF[1][0] == 3) {
+                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomerouge.png", 11, 11);
+                        }
                     }
-                    if (k == caractF[2][1] && j == caractF[3][1]) {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "fantomebleu.png", 1.1, 1.1);
+
+
+                    if (k == caractF[4][1] && j == caractF[5][1]) {
+                        if(caractF[1][1] == 0) {
+                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomebleu.png", 11, 11);
+                        }
+                        if(caractF[1][1] == 1) {
+                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomebleu.png", 11, 11);
+                        }
+                        if(caractF[1][1] == 2) {
+                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomebleu.png", 11, 11);
+                        }
+                        if(caractF[1][1] == 3) {
+                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomebleu.png", 11, 11);
+                        }
                     }
-                    if (k == caractF[2][2] && j == caractF[3][2]) {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "fantomeblanc.png", 1, 1);
+                    if (k == caractF[4][2] && j == caractF[5][2]) {
+                        if(caractF[1][2] == 0) {
+                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomeblanc.png", 10, 10);
+                        }
+                        if(caractF[1][2] == 1) {
+                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomeblanc.png", 10, 10);
+                        }
+                        if(caractF[1][2] == 2) {
+                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomeblanc.png", 10, 10);
+                        }
+                        if(caractF[1][2] == 3) {
+                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomeblanc.png", 10, 10);
+                        }
                     }
-                    if (k == caractF[2][3] && j == caractF[3][3]) {
-                        StdDraw.picture(j + 0.5, -k - 0.5, "fantomevert.jpg", 1.1, 1.1);
+
+                    if (k == caractF[4][3] && j == caractF[5][3]) {
+                        if(caractF[1][3] == 0) {
+                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomevert.jpg", 9, 9);
+                        }
+                        if(caractF[1][3] == 1) {
+                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomevert.jpg", 9, 9);
+                        }
+                        if(caractF[1][3] == 2) {
+                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomevert.jpg", 9, 9);
+                        }
+                        if(caractF[1][3] == 3) {
+                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomevert.jpg", 9, 9);
+                        }
                     }
                     if (laby[k][j] == 'M') {
-                        StdDraw.rectangle(j + 0.5, -k - 0.5, 0.3, 0.3);
+                        StdDraw.rectangle(10 * j + 5, -10 * k - 5, 3, 3);
                     }
+
                 }
             }
             StdDraw.setPenColor(StdDraw.BLUE);
-            StdDraw.filledRectangle(24, -38, 28, 5);
+            StdDraw.filledRectangle(240, -380, 280, 50);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.textLeft(2, -35, "Vies : " + vies);
-           // StdDraw.picture(1, -35, "cerises.png", 1, 1);
+            StdDraw.textLeft(20, -350, "Vies : " + vies);
+            // StdDraw.picture(1, -35, "cerises.png", 1, 1);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.textLeft(10, -35, "Score : " + compte);
-            StdDraw.picture(8, -35, "Pastille.png", 1, 1);
+            StdDraw.textLeft(100, -350, "Score : " + compte);
+            StdDraw.picture(80, -350, "Pastille.png", 1, 1);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.textLeft(19, -35, "Le PACMAN de");
-            StdDraw.textLeft(21, -36, nom);
+            StdDraw.textLeft(190, -350, "Le PACMAN de");
+            StdDraw.textLeft(210, -360, nom);
 
 
-            StdDraw.show(200);
-            StdDraw.pause(10);
+            StdDraw.show(10);
+            StdDraw.pause(20);
+            StdDraw.clear(StdDraw.BLACK);
 
             //Laby.Afficher(laby);
             //StdDraw.show(0);
         }
+    }
         //private static char ancienneDir = 'z';
 
 
@@ -106,10 +190,11 @@ public class Fenetre {
 
 
             StdDraw.setCanvasSize(700, 700);
-            StdDraw.setXscale(0, 28);
-            StdDraw.setYscale(-38, 0);
+            StdDraw.setXscale(0, 280);
+            StdDraw.setYscale(-380, 0);
             StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.filledRectangle(14, -16, 14, 16);
+            StdDraw.filledRectangle(140, -160, 140, 160);
+            StdDraw.enableDoubleBuffering();
 
 
             Pacman.setPos(pos);
@@ -122,7 +207,7 @@ public class Fenetre {
 
             //StdDraw.show(200);
             //StdDraw.pause(10);
-            StdDraw.clear(StdDraw.BLACK);
+            //StdDraw.clear(StdDraw.BLACK);
 
             char[][] laby = Laby.Gene(pos, caractF, false);
             boolean[][] labybool = Laby.GeneBool(laby);
@@ -164,7 +249,7 @@ public class Fenetre {
 
 
                     Fenetre.draw(nom);
-                    StdDraw.clear(StdDraw.BLACK);
+                   // StdDraw.clear(StdDraw.BLACK);
 
                 }
             }
@@ -177,7 +262,7 @@ public class Fenetre {
                 Laby.Gene(npos, caractF, true);
                 labybool = Laby.GeneBool(laby);
                 Fenetre.draw(nom);
-                StdDraw.clear(StdDraw.BLACK);
+                //StdDraw.clear(StdDraw.BLACK);
 
             }
 
