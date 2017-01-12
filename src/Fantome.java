@@ -50,6 +50,7 @@ public class Fantome {
     // s = 1
     // q = 2
     // d = 3
+
     public static int directionFantome(){
         int dir = random.nextInt(4);
         return dir;
@@ -122,6 +123,18 @@ public class Fantome {
         char [][] laby = Laby.getLaby();
         //ancienneDir = dir;
         caractF[0][fant] = caractF[1][fant];
+
+        //0eme ligne = ancienne direction
+        //1ere ligne = direction
+        //2eme ligne = y
+        //3eme ligne = x
+        //4eme ligne = ancien y
+        //5eme ligne = ancien x
+
+        //0 = R
+        //1 = B
+        //2 = Bl
+        //3 = V
 
         if (caractF[1][fant] == 0) {
 
