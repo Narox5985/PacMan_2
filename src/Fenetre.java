@@ -24,34 +24,70 @@ public class Fenetre {
 
 
         if (k == anciennePos[0] && j == anciennePos[1]) {
-            if (dirpac == 'z') {
-                StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 18, 18);
-                t='z';
-            }
-            if (dirpac == 's') {
-                StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacmanB.png", 18, 18);
-                t='s';
-            }
-            if (dirpac == 'q') {
-                StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacmanG.png", 18, 18);
-                t='q';
-            }
-            if (dirpac == 'd') {
-                StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacmanD.png", 18, 18);
-                t='d';
-            }
-            if (dirpac == 'r') {
-                if ( t == 'z') {
-                    StdDraw.picture(nj * 10 + 5, -10 *nk - 5, "imagepacmanH.png", 18, 18);
+            if(w %4 !=0) {
+                if (dirpac == 'z') {
+                    StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 18, 18);
+                    t = 'z';
                 }
-                if ( t == 's') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5 , "imagepacmanB.png", 18, 18);
+                if (dirpac == 's') {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacmanB.png", 18, 18);
+                    t = 's';
                 }
-                if ( t == 'q') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 18, 18);
+                if (dirpac == 'q') {
+                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacmanG.png", 18, 18);
+                    t = 'q';
                 }
-                if ( t == 'd') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 18, 18);
+                if (dirpac == 'd') {
+                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacmanD.png", 18, 18);
+                    t = 'd';
+                }
+                if (dirpac == 'r') {
+                    if (t == 'z') {
+                        StdDraw.picture(nj * 10 + 5, -10 * nk - 5, "imagepacmanH.png", 18, 18);
+                    }
+                    if (t == 's') {
+                        StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanB.png", 18, 18);
+                    }
+                    if (t == 'q') {
+                        StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 18, 18);
+                    }
+                    if (t == 'd') {
+                        StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 18, 18);
+                    }
+                }
+            }
+            if( w %4 ==0){
+                StdDraw.setPenColor(254, 254, 0);
+                if (dirpac == 'z') {
+                    StdDraw.filledCircle(j * 10 + 5, -10 * k - 5 + w, 4);
+                    t = 'z';
+                }
+                if (dirpac == 's') {
+                    StdDraw.filledCircle(j * 10 + 5, -10 * k - 5 - w, 4);
+                    t = 's';
+                }
+                if (dirpac == 'q') {
+                    StdDraw.filledCircle(j * 10 + 5 -w, -10 * k - 5, 4);
+                    t = 'q';
+                }
+                if (dirpac == 'd') {
+
+                    StdDraw.filledCircle(j * 10 + 5 + w, -10 * k - 5 , 4);
+                    t = 'd';
+                }
+                if(dirpac =='r'){
+                    if (t == 'z') {
+                        StdDraw.filledCircle(j * 10 + 5, -10 * k - 5 + w, 4);
+                    }
+                    if (t == 's') {
+                        StdDraw.filledCircle(j * 10 + 5, -10 * k - 5 - w, 4);
+                    }
+                    if (t == 'q') {
+                        StdDraw.filledCircle(j * 10 + 5 -w, -10 * k - 5, 4);
+                    }
+                    if (t == 'd') {
+                        StdDraw.filledCircle(j * 10 + 5 + w, -10 * k - 5 , 4);
+                    }
                 }
             }
         }
@@ -188,7 +224,7 @@ public class Fenetre {
             String nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
 
 
-            StdDraw.setCanvasSize(700, 700);
+            StdDraw.setCanvasSize(1200, 1200);
             StdDraw.setXscale(0, 280);
             StdDraw.setYscale(-380, 0);
             StdDraw.setPenColor(StdDraw.BLACK);
