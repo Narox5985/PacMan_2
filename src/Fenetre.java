@@ -158,7 +158,6 @@ public class Fenetre {
             StdDraw.textLeft(190, -350, "Le PACMAN de");
             StdDraw.textLeft(210, -360, nom);
 
-
             StdDraw.show(10);
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
