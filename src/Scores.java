@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by benoit on 08/01/2017.
@@ -51,9 +52,7 @@ private static int vic =0;
             }
         }
 
-        if (vies == 0){
-                        // ferme les fenetres
-        }
+
 
         return (vies);
     }

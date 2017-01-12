@@ -146,6 +146,7 @@ public class Fenetre {
 
                 }
             }
+
             StdDraw.setPenColor(StdDraw.BLUE);
             StdDraw.filledRectangle(240, -380, 280, 50);
             StdDraw.setPenColor(StdDraw.WHITE);
@@ -161,6 +162,15 @@ public class Fenetre {
             StdDraw.show(10);
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
+
+            if (vies == 0){
+                JOptionPane jop2 = new JOptionPane();
+                ImageIcon img = new ImageIcon("Lots.jpg");
+                ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+                jop2.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat);
+                break;
+
+            }
 
             //Laby.Afficher(laby);
             //StdDraw.show(0);
@@ -186,6 +196,7 @@ public class Fenetre {
             ImageIcon toto = new ImageIcon("Toto.jpg");
             ImageIcon resultat2 = new ImageIcon(toto.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
             String nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
+
 
 
             StdDraw.setCanvasSize(700, 700);
@@ -247,6 +258,8 @@ public class Fenetre {
                     Laby.Gene(npos, caractF, false);
 
 
+
+
                     Fenetre.draw(nom);
                    // StdDraw.clear(StdDraw.BLACK);
 
@@ -260,6 +273,7 @@ public class Fenetre {
                 caractF = Fantome.getCaractF();
                 Laby.Gene(npos, caractF, true);
                 labybool = Laby.GeneBool(laby);
+
                 Fenetre.draw(nom);
                 //StdDraw.clear(StdDraw.BLACK);
 
