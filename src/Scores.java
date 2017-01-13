@@ -13,16 +13,18 @@ public class Scores {
         for (int k = 0; k < 31; k++) {
             for (int j = 0; j < 28; j++) {
                 if (laby[k][j] == 'V') {
-                        compte = compte + 1;
+                        compte = compte + 10;
                 }
             }
         }
 
         return (compte);
     }
-private static int vic =0;
+
+    private static int vic =0;
+    private static boolean plusdeP = false;
+
     public static boolean CompteurVictoire(){
-        boolean plusdeP = false;
     char[][] laby = Laby.getLaby();
         for (int k = 0; k < 31; k++) {
         for (int j = 0; j < 28; j++) {
@@ -42,12 +44,12 @@ private static int vic =0;
 
     public static int Vies() {
 
-        int[] pos = Pacman.getPos();
+        int[] apos = Pacman.getAnciennePos();
 
         int[][] caractF = Fantome.getCaractF();
 
         for (int k = 0; k < 4; k++) {
-            if ((caractF[2][k] == pos[0]) && (caractF[3][k] == pos[1])) {
+            if ((caractF[4][k] == apos[0]) && (caractF[5][k] == apos[1])) {
                 vies = vies - 1;
             }
         }
