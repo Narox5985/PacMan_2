@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import static sun.swing.MenuItemLayoutHelper.max;
+
 /**
  * Created by rivie_000 on 07/01/2017.
  */
@@ -114,6 +116,7 @@ public class Fantome {
             TestDeplacementF(Laby.getLabybool(), fant, directionFantome());
         }
     }
+
     public static void DeplacementF(int fant, int dir) {
 
         caractF[4][fant] = caractF[2][fant];
@@ -164,10 +167,6 @@ public class Fantome {
 
 
     public static void deplacementDesFantomes(int numFantDeb, int numFantFin) {
-        // for (int k = 0; k <= 3; k++){
-        //     caractF[4][k] = caractF[2][k];
-        //      caractF[5][k] = caractF[3][k];
-        //  }
         for (int k = numFantDeb; k <= numFantFin; k++){
 
             int dir = directionFantome();
@@ -176,7 +175,11 @@ public class Fantome {
 
     }
 
+
     public static int [][] getCaractF(){
         return caractF;
     }
+
+
+
 }

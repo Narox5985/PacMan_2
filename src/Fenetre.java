@@ -79,13 +79,14 @@ public class Fenetre {
 
 
     }
-private static  int vies;
+    private static  int vies;
     private static int compte;
 
     public static void draw(String nom) {
         laby = Laby.getLaby();
         int[][] caractF = Fantome.getCaractF();
         compte = Scores.Compte();
+        boolean plusdeP = Scores.CompteurVictoire();
 
         char dir = Joueur.getDep();
 
@@ -196,6 +197,15 @@ private static  int vies;
 
             }
 
+            if (plusdeP == true){
+                JOptionPane jop3 = new JOptionPane();
+                ImageIcon img1 = new ImageIcon("win.jpg");
+                ImageIcon resultat2 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
+                jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat2);
+                System.exit(0);
+
+            }
+
             //Laby.Afficher(laby);
             //StdDraw.show(0);
         }
@@ -293,7 +303,9 @@ private static  int vies;
 
                 Joueur.cmdPacman();
                 int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                Fantome.deplacementDesFantomes(0, 3);
+                Fantome.deplacementDesFantomes(1, 3);
+                Fantome.TestDeplacementR(Laby.getLabybool(), Fantome.DeplacementR());
+                Fantome.DeplacementF(0,Fantome.DeplacementR());
                 caractF = Fantome.getCaractF();
                 Laby.Gene(npos, caractF, true);
                 labybool = Laby.GeneBool(laby);

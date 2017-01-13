@@ -21,11 +21,12 @@ public class Scores {
         return (compte);
     }
 
-    private static int vic =0;
+
     private static boolean plusdeP = false;
 
     public static boolean CompteurVictoire(){
     char[][] laby = Laby.getLaby();
+    int vic =0;
         for (int k = 0; k < 31; k++) {
         for (int j = 0; j < 28; j++) {
             if (laby[k][j] == 'P') {
