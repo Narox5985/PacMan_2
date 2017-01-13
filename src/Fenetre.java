@@ -24,47 +24,69 @@ public class Fenetre {
 
 
         if (k == anciennePos[0] && j == anciennePos[1]) {
-            if (dirpac == 'z') {
-                StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 18, 18);
-                t='z';
-            }
-            if (dirpac == 's') {
-                StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacmanB.png", 18, 18);
-                t='s';
-            }
-            if (dirpac == 'q') {
-                StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacmanG.png", 18, 18);
-                t='q';
-            }
-            if (dirpac == 'd') {
-                StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacmanD.png", 18, 18);
-                t='d';
+            if(w>=5) {
+                if (dirpac == 'z') {
+                    StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 8, 8);
+                    t = 'z';
+                }
+                if (dirpac == 's') {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacmanB.png", 8, 8);
+                    t = 's';
+                }
+                if (dirpac == 'q') {
+                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacmanG.png", 8, 8);
+                    t = 'q';
+                }
+                if (dirpac == 'd') {
+                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacmanD.png", 8, 8);
+                    t = 'd';
+                }
             }
             if (dirpac == 'r') {
                 if ( t == 'z') {
-                    StdDraw.picture(nj * 10 + 5, -10 *nk - 5, "imagepacmanH.png", 18, 18);
+                    StdDraw.picture(nj * 10 + 5, -10 *nk - 5, "imagepacmanH.png", 8, 8);
                 }
                 if ( t == 's') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5 , "imagepacmanB.png", 18, 18);
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5 , "imagepacmanB.png", 8, 8);
                 }
                 if ( t == 'q') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 18, 18);
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 8, 8);
                 }
                 if ( t == 'd') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 18, 18);
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 8, 8);
+                }
+            }
+            if(w<5) {
+                if (dirpac == 'z') {
+                    StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacman.png", 8, 8);
+                    t = 'z';
+                }
+                if (dirpac == 's') {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5 - w, "imagepacman.png", 8, 8);
+                    t = 's';
+                }
+                if (dirpac == 'q') {
+                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "imagepacman.png", 8, 8);
+                    t = 'q';
+                }
+                if (dirpac == 'd') {
+                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "imagepacman.png", 8, 8);
+                    t = 'd';
                 }
             }
         }
 
 
-    }
 
+    }
+private static  int vies;
+    private static int compte;
 
     public static void draw(String nom) {
         laby = Laby.getLaby();
         int[][] caractF = Fantome.getCaractF();
-        int compte = Scores.Compte();
-        int vies = Scores.Vies();
+        compte = Scores.Compte();
+
         char dir = Joueur.getDep();
 
         StdDraw.setPenColor(0, 39, 218);
@@ -159,6 +181,8 @@ public class Fenetre {
             StdDraw.textLeft(190, -350, "Le PACMAN de");
             StdDraw.textLeft(210, -360, nom);
 
+            vies = Scores.Vies();
+            compte = Scores.Compte();
             StdDraw.show(10);
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
