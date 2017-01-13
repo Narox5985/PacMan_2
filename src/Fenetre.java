@@ -168,7 +168,7 @@ public class Fenetre {
                 ImageIcon img = new ImageIcon("Lots.jpg");
                 ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
                 jop2.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat);
-                break;
+                System.exit(0);
 
             }
 
