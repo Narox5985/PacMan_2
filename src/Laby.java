@@ -7,6 +7,7 @@ public class Laby {
 
 	public static char [][] Gene(int [] pos, int [][] caractF, boolean fermetureCage){
 
+		anciennePos = Pacman.getAnciennePos();
 
 		for (int i=0; i<28; i++ ){
 			laby[0][i]= '#';
@@ -464,7 +465,8 @@ public class Laby {
 				}
 			}
 		}
-		laby[pos[0]][pos[1]] = 'D';
+		laby[anciennePos[0]][anciennePos[1]] = 'D';
+
 
 
 		for (int k=0; k<31; k++){
@@ -477,18 +479,19 @@ public class Laby {
 		laby[12][13]='N';
 		laby[12][14]='N';
 
+
 		for (int k=9; k<31; k++){
 			for (int j=0; j<28; j++){
 				if (k >9 && k < 20){
 					if (j<6 || j>21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D'&&  laby[k][j]!='N'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
 				}
 				if ( k >8 && k < 21){
 					if (j>6 && j< 21){
-						if (laby[k][j] != '#'&& laby[k][j]!='D' && laby[k][j]!='N'){
+						if (laby[k][j] != '#'&& laby[k][j]!='D'&& laby[k][j]!='N'){
 							laby[k][j]= ' ';
 						}
 					}
@@ -504,6 +507,11 @@ public class Laby {
 		return(laby);
 	}
 
+	private static char [][] labyPast;
+	public static char [][] getLabyPast(){
+		return labyPast;
+	}
+	private static int [] anciennePos;
 
 
 	private static boolean [][] labybool;

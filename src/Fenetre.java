@@ -81,12 +81,14 @@ public class Fenetre {
     }
     private static  int vies;
     private static int compte;
+    private static char [][] labyPast;
 
     public static void draw(String nom) {
         laby = Laby.getLaby();
         int[][] caractF = Fantome.getCaractF();
         compte = Scores.Compte();
         boolean plusdeP = Scores.CompteurVictoire();
+        //labyPast = Laby.GeneLabyPast(laby);
 
         char dir = Joueur.getDep();
 
