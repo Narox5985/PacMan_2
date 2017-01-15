@@ -7,8 +7,8 @@ public class FantomeRouge {
 
         int [][] caractF = Fantome.getCaractF();
 
-        int y = caractF[2][0];
-        int x = caractF[3][0];
+        int x = caractF[2][0];
+        int y = caractF[3][0];
 
 
 
@@ -38,8 +38,65 @@ public class FantomeRouge {
     }
 
     public static int FuturDepR(){
+        boolean [][] labybool = Laby.getLabybool();
+        boolean [] test = TestDeplacementR(labybool);
+        int cpt =0;
+        for (int k=0; k>4; k++){
+            if (test [k]);
+            cpt = cpt +1;
+        }
 
-        int[] apos = Pacman.getAnciennePos();
+        int[] npos = Pacman.getNPos();
+        int[][] caractF = Fantome.getCaractF();
+        int dir = caractF[0][0];
+        int diffHauteur = npos[0] - caractF[2][0];
+        int diffLargeur = npos[1] - caractF[3][0];
+
+        int diffHautLarg = Math.abs(diffHauteur) - Math.abs(diffLargeur);
+
+
+        if( diffHautLarg > 0){
+            if (diffHauteur > 0){
+                if (test[1]){
+                    dir = 1;
+                }
+                else{
+                    dir = caractF[0][0];
+                }
+            }
+            if (diffHauteur < 0){
+                if (test[0]){
+                    dir = 0;
+                }
+                else{
+                    dir = caractF[0][0];
+                }
+            }
+        }
+
+        if( diffHautLarg < 0){
+            if (diffLargeur > 0){
+                if (test[3]){
+                    dir = 3;
+                }
+                else{
+                    dir = caractF[0][0];
+                }
+            }
+            if (diffLargeur < 0){
+                if (test[2]){
+                    dir = 2;
+                }
+                else{
+                    dir = caractF[0][0];
+                }
+            }
+        }
+        return (dir);
+
+
+
+       /* int[] apos = Pacman.getNPos();
         boolean [] test = TestDeplacementR(Laby.getLabybool());
         int yn = 0,xn = 0,ys=0,xs=0,ye=0,xe=0,yo=0,xo=0;
         int w;
@@ -72,14 +129,15 @@ public class FantomeRouge {
             ye = apos[0] - (caractF[2][0]+1);
             xe = apos[1] - caractF[3][0];
         }
+
         int [] s = {xn+yn, xs+ys, xo+yo, xe+ye};
 
-        for (w = 0; w<3; w++){
+        /*for (w = 0; w<3; w++){
             if (s[w]<s[w+1]){
                 min = s[w];
             }
         }
-
+       min = Math.min(s[0], s[1], s[2], s[3]);
         if (min == s[0]){
             dep = 0; //nord
         }
@@ -97,5 +155,7 @@ public class FantomeRouge {
         }
 
         return(dep);
+        */
     }
+
 }
