@@ -22,12 +22,18 @@ public class FantomeRouge {
             test[1] = true;
         }
 
-        if (labybool[x][y + 1]){
+        if (labybool[x][y - 1]){
             test [2] = true;
         }
+        if( x == 14 && y == 0){
+            test[2] = true;
+        }
 
-        if (labybool[x][y - 1]){
+        if (labybool[x][y + 1]){
             test [3] = true;
+        }
+        if( x == 14 && y == 27){
+            test[3] = true;
         }
 
         if (!test[0] && test[1] && !test[2] && !test[3]){
@@ -40,12 +46,11 @@ public class FantomeRouge {
     public static int FuturDepR(){
         boolean [][] labybool = Laby.getLabybool();
         boolean [] test = TestDeplacementR(labybool);
-        int cpt =0;
-        for (int k=0; k>4; k++){
-            if (test [k]);
-            cpt = cpt +1;
-        }
 
+        for(int k=0; k<4; k++){
+            System.out.print(test[k] + "    ");
+        }
+        System.out.println( "     ");
         int[] npos = Pacman.getNPos();
         int[][] caractF = Fantome.getCaractF();
         int dir = caractF[0][0];

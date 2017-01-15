@@ -507,10 +507,6 @@ public class Laby {
 		return(laby);
 	}
 
-	private static char [][] labyPast;
-	public static char [][] getLabyPast(){
-		return labyPast;
-	}
 	private static int [] anciennePos;
 
 

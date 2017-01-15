@@ -42,9 +42,14 @@ public class Scores {
 }
 
     private static int vies = 3;
+    private static boolean changement;
+
+    public static boolean getChangement(){
+        return changement;
+    }
 
     public static int Vies() {
-
+        changement = false;
         int[] npos = Pacman.getNPos();
 
         int[][] caractF = Fantome.getCaractF();
@@ -52,7 +57,7 @@ public class Scores {
         for (int k = 0; k < 4; k++) {
             if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
                 vies = vies - 1;
-                System.out.println(vies);
+                changement = true;
             }
         }
 

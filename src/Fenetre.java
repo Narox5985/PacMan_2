@@ -13,6 +13,7 @@ public class Fenetre {
         static char[][] laby;
         private static char t= 'w';
         private static Icon Jouer;
+        private static boolean changement = Scores.getChangement();
 
 
     public static void affichePacman(char [][] laby, int k, int j, int w) {
@@ -81,14 +82,12 @@ public class Fenetre {
     }
     private static  int vies;
     private static int compte;
-    private static char [][] labyPast;
 
     public static void draw(String nom) {
         laby = Laby.getLaby();
         int[][] caractF = Fantome.getCaractF();
         compte = Scores.Compte();
         boolean plusdeP = Scores.CompteurVictoire();
-        //labyPast = Laby.GeneLabyPast(laby);
         char dir = Joueur.getDep();
 
         StdDraw.setPenColor(0, 39, 218);
@@ -184,7 +183,6 @@ public class Fenetre {
             StdDraw.textLeft(190, -350, "Le PACMAN de");
             StdDraw.textLeft(210, -360, nom);
 
-            //vies = Scores.Vies();
 
             compte = Scores.Compte();
             StdDraw.show(10);
@@ -208,34 +206,80 @@ public class Fenetre {
                 System.exit(0);
 
             }
-
-            //Laby.Afficher(laby);
-            //StdDraw.show(0);
         }
         vies = Scores.Vies();
     }
-        //private static char ancienneDir = 'z';
 
 
 
+    public static void execution(int [] pos, int [][] caractF, char [][] laby, boolean [][] labybool){
+
+        for (int k = 1; k <= 3; k++) {
+            int i = 0;
+            long t = System.currentTimeMillis();
+            long end = t + 3000;
+            while (System.currentTimeMillis() < end && changement == false) {
+
+                Joueur.cmdPacman();
+                pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+                Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                if (k > 1 && i != 0) {
+                    Fantome.deplacementDesFantomes(1, k - 1);
+                }
+                if (k == 1) {
+                    Fantome.DeplacementF(1, 0);
+                    //Fantome.DeplacementF(0, 3);
+                }
+                if (k == 2 && i == 0) {
+                    Fantome.DeplacementF(2, 3);
+                    i = i + 1;
+                }
+                if (k == 2 && i != 0) {
+                    Fantome.DeplacementF(2, 0);
+                }
+                if (k == 3 && i == 0) {
+                    Fantome.DeplacementF(3, 2);
+                    i = i + 1;
+                }
+                if (k == 3 && i != 0) {
+                    Fantome.DeplacementF(3, 0);
+                }
+                caractF = Fantome.getCaractF();
+                Laby.Gene(pos, caractF, false);
+                Fenetre.draw(nom);
+                changement = Scores.getChangement();
+            }
+        }
+
+        while (changement == false) {
+
+            Joueur.cmdPacman();
+            pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+            Fantome.deplacementDesFantomes(1, 3);
+            Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+            caractF = Fantome.getCaractF();
+            Laby.Gene(pos, caractF, true);
+            labybool = Laby.GeneBool(laby);
+
+            Fenetre.draw(nom);
+            changement = Scores.getChangement();
+
+        }
+
+    }
+private static String nom;
 
         public static void main(String[] args) {
-
-            int[] pos = {23, 14};
 
             JOptionPane jop2 = new JOptionPane();
             ImageIcon img = new ImageIcon("logo.jpg");
             ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
             jop2.showMessageDialog(null, "Bienvenue sur PACMAN ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat);
 
-
-
             JOptionPane jop = new JOptionPane();
             ImageIcon toto = new ImageIcon("Toto.jpg");
             ImageIcon resultat2 = new ImageIcon(toto.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
-            String nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
-
-
+            nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
 
             StdDraw.setCanvasSize(700, 700);
             StdDraw.setXscale(0, 280);
@@ -244,83 +288,37 @@ public class Fenetre {
             StdDraw.filledRectangle(140, -160, 140, 160);
             StdDraw.enableDoubleBuffering();
 
-
-            Pacman.setPos(pos);
+            int[] pos = {23, 14};
             int[][] caractF = Fantome.initialisationF();
             Laby.Afficher(Laby.Gene(pos, caractF, false));
+            Pacman.setPos(pos);
+
             vies = Scores.Vies();
             draw(nom);
+
             boolean plusdeP = Scores.CompteurVictoire();
-            System.out.println(plusdeP);
 
 
-            //StdDraw.show(200);
-            //StdDraw.pause(10);
-            //StdDraw.clear(StdDraw.BLACK);
-
+            Joueur.ini(val);
             char[][] laby = Laby.Gene(pos, caractF, false);
             boolean[][] labybool = Laby.GeneBool(laby);
 
-            Joueur.ini(val);
+          while(true){
+              execution(pos, caractF, laby, labybool);
+              pos[0] = 23;
+              pos[1]= 14;
+              Pacman.setPos(pos);
+              caractF = Fantome.initialisationF();
+              //Laby.Afficher(Laby.Gene(pos, caractF, false));
+              vies = Scores.Vies();
+              changement = Scores.getChangement();
+              laby = Laby.Gene(pos, caractF, false);
+              Joueur.ini(val);
+              draw(nom);
+              System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttt");
+              StdDraw.pause(1000);
+          }
 
-            for (int k = 1; k <= 3; k++) {
-                int i = 0;
-                long t = System.currentTimeMillis();
-                long end = t + 3000;
-                while (System.currentTimeMillis() < end) {
-
-                    Joueur.cmdPacman();
-                    int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-                    if (k > 1 && i != 0) {
-                        Fantome.deplacementDesFantomes(1, k - 1);
-                    }
-                    if (k == 1) {
-                        Fantome.DeplacementF(1, 0);
-                        //Fantome.DeplacementF(0, 3);
-
-                    }
-                    if (k == 2 && i == 0) {
-                        Fantome.DeplacementF(2, 3);
-                        i = i + 1;
-                    }
-                    if (k == 2 && i != 0) {
-                        Fantome.DeplacementF(2, 0);
-                    }
-                    if (k == 3 && i == 0) {
-                        Fantome.DeplacementF(3, 2);
-                        i = i + 1;
-                    }
-                    if (k == 3 && i != 0) {
-                        Fantome.DeplacementF(3, 0);
-                    }
-                    //FantomeRouge.TestDeplacementR(Laby.getLabybool(), FantomeRouge.DeplacementR());
-                    caractF = Fantome.getCaractF();
-                    Laby.Gene(npos, caractF, false);
-
-
-
-
-                    Fenetre.draw(nom);
-                   // StdDraw.clear(StdDraw.BLACK);
-
-                }
-            }
-            while (true) {
-
-                Joueur.cmdPacman();
-                int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                Fantome.deplacementDesFantomes(1, 3);
-                //FantomeRouge.TestDeplacementR(Laby.getLabybool(), FantomeRouge.Deplacement());
-               Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-                caractF = Fantome.getCaractF();
-                Laby.Gene(npos, caractF, true);
-                labybool = Laby.GeneBool(laby);
-
-                Fenetre.draw(nom);
-                //StdDraw.clear(StdDraw.BLACK);
-
-            }
 
         }
 

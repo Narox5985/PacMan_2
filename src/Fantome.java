@@ -96,7 +96,7 @@ public class Fantome {
             if (!labybool[x][y - 1]) {
                 res = false;
             }
-            if( x == 15 && y == 0){
+            if( x == 14 && y == 0){
                 res = true;
             }
         }
@@ -107,7 +107,7 @@ public class Fantome {
             if (!labybool[x][y + 1]) {
                 res = false;
             }
-            if( x == 15 && y == 27){
+            if( x == 14 && y == 27){
                 res = true;
             }
         }
