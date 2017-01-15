@@ -45,13 +45,14 @@ public class Scores {
 
     public static int Vies() {
 
-        int[] apos = Pacman.getAnciennePos();
+        int[] npos = Pacman.getNPos();
 
         int[][] caractF = Fantome.getCaractF();
 
         for (int k = 0; k < 4; k++) {
-            if ((caractF[4][k] == apos[0]) && (caractF[5][k] == apos[1])) {
+            if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
                 vies = vies - 1;
+                System.out.println(vies);
             }
         }
 

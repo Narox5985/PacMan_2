@@ -92,6 +92,9 @@ public class FantomeRouge {
                 }
             }
         }
+        if (diffHautLarg == 0){
+
+        }
         return (dir);
 
 

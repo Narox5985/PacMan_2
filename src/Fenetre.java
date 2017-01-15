@@ -89,7 +89,6 @@ public class Fenetre {
         compte = Scores.Compte();
         boolean plusdeP = Scores.CompteurVictoire();
         //labyPast = Laby.GeneLabyPast(laby);
-
         char dir = Joueur.getDep();
 
         StdDraw.setPenColor(0, 39, 218);
@@ -172,6 +171,7 @@ public class Fenetre {
                 }
             }
 
+            compte = Scores.Compte();
             StdDraw.setPenColor(StdDraw.BLUE);
             StdDraw.filledRectangle(240, -380, 280, 50);
             StdDraw.setPenColor(StdDraw.WHITE);
@@ -184,7 +184,8 @@ public class Fenetre {
             StdDraw.textLeft(190, -350, "Le PACMAN de");
             StdDraw.textLeft(210, -360, nom);
 
-            vies = Scores.Vies();
+            //vies = Scores.Vies();
+
             compte = Scores.Compte();
             StdDraw.show(10);
             StdDraw.pause(20);
@@ -211,6 +212,7 @@ public class Fenetre {
             //Laby.Afficher(laby);
             //StdDraw.show(0);
         }
+        vies = Scores.Vies();
     }
         //private static char ancienneDir = 'z';
 
@@ -246,6 +248,7 @@ public class Fenetre {
             Pacman.setPos(pos);
             int[][] caractF = Fantome.initialisationF();
             Laby.Afficher(Laby.Gene(pos, caractF, false));
+            vies = Scores.Vies();
             draw(nom);
             boolean plusdeP = Scores.CompteurVictoire();
             System.out.println(plusdeP);
@@ -268,12 +271,13 @@ public class Fenetre {
 
                     Joueur.cmdPacman();
                     int[] npos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                    if (k != 1 && i != 0) {
+                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                    if (k > 1 && i != 0) {
                         Fantome.deplacementDesFantomes(1, k - 1);
                     }
                     if (k == 1) {
                         Fantome.DeplacementF(1, 0);
-                        Fantome.DeplacementF(0, 3);
+                        //Fantome.DeplacementF(0, 3);
 
                     }
                     if (k == 2 && i == 0) {
@@ -291,7 +295,6 @@ public class Fenetre {
                         Fantome.DeplacementF(3, 0);
                     }
                     //FantomeRouge.TestDeplacementR(Laby.getLabybool(), FantomeRouge.DeplacementR());
-                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
                     caractF = Fantome.getCaractF();
                     Laby.Gene(npos, caractF, false);
 
