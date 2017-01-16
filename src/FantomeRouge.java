@@ -14,6 +14,7 @@ public class FantomeRouge {
 
         boolean [] test = {false,false,false,false};
 
+        //System.out.println("========" + x + "=========" + y + "========");
         if (labybool[x - 1][y]){
             test[0] = true;
         }
@@ -21,16 +22,19 @@ public class FantomeRouge {
         if (labybool[x + 1][y]){
             test[1] = true;
         }
-
-        if (labybool[x][y - 1]){
-            test [2] = true;
+        if (y != 0){
+            if (labybool[x][y - 1]) {
+                test[2] = true;
+            }
         }
+
         if( x == 14 && y == 0){
             test[2] = true;
         }
-
-        if (labybool[x][y + 1]){
-            test [3] = true;
+        if  (y != 27) {
+            if ((labybool[x][y + 1])) {
+                test[3] = true;
+            }
         }
         if( x == 14 && y == 27){
             test[3] = true;

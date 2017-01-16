@@ -42,8 +42,8 @@ public class Fantome {
     //     Fantome.ancienneDir = ancienneDir;
     // }
 
-    //static Random random = new Random(System.currentTimeMillis());
-    private static Random random = new Random();
+    private static Random random = new Random(System.currentTimeMillis());
+    //private static Random random = new Random();
     // private static char dir;
     //private static char ancienneDir;
 
@@ -123,6 +123,7 @@ public class Fantome {
         caractF[5][fant] = caractF[3][fant];
 
         TestDeplacementF(Laby.getLabybool(),fant, dir);
+
         char [][] laby = Laby.getLaby();
         //ancienneDir = dir;
         caractF[0][fant] = caractF[1][fant];
@@ -179,7 +180,5 @@ public class Fantome {
     public static int [][] getCaractF(){
         return caractF;
     }
-
-
 
 }
