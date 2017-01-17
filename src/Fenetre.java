@@ -1,31 +1,29 @@
 
-import edu.princeton.cs.introcs.StdDraw;
 
+import edu.princeton.cs.introcs.StdDraw;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 
 public class Fenetre {
-        public static char val = 'q';
-        static char[][] laby;
-        private static char t= 'w';
-        private static Icon Jouer;
-        private static boolean changement = Scores.getChangement();
+    public static char val = 'q';
+    static char[][] laby;
+    private static char t = 'w';
+    private static Icon Jouer;
+    private static boolean changement = Scores.getChangement();
 
 
-    public static void affichePacman(char [][] laby, int k, int j, int w) {
+    public static void affichePacman(char[][] laby, int k, int j, int w) {
         char dirpac = Pacman.getDirPac();
         int[] anciennePos = Pacman.getAnciennePos();
         int nk = anciennePos[0];
         int nj = anciennePos[1];
-        int [] npos = Pacman.getNPos();
+        int[] npos = Pacman.getNPos();
 
 
         if (k == anciennePos[0] && j == anciennePos[1]) {
-            if(w>=5) {
+            if (w >= 5) {
                 if (dirpac == 'z') {
                     StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacmanH.png", 8, 8);
                     t = 'z';
@@ -44,20 +42,20 @@ public class Fenetre {
                 }
             }
             if (dirpac == 'r') {
-                if ( t == 'z') {
-                    StdDraw.picture(nj * 10 + 5, -10 *nk - 5, "imagepacmanH.png", 8, 8);
+                if (t == 'z') {
+                    StdDraw.picture(nj * 10 + 5, -10 * nk - 5, "imagepacmanH.png", 8, 8);
                 }
-                if ( t == 's') {
-                    StdDraw.picture(10 * nj + 5, -10 * nk - 5 , "imagepacmanB.png", 8, 8);
+                if (t == 's') {
+                    StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanB.png", 8, 8);
                 }
-                if ( t == 'q') {
+                if (t == 'q') {
                     StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanG.png", 8, 8);
                 }
-                if ( t == 'd') {
+                if (t == 'd') {
                     StdDraw.picture(10 * nj + 5, -10 * nk - 5, "imagepacmanD.png", 8, 8);
                 }
             }
-            if(w<5) {
+            if (w < 5) {
                 if (dirpac == 'z') {
                     StdDraw.picture(j * 10 + 5, -10 * k - 5 + w, "imagepacman.png", 8, 8);
                     t = 'z';
@@ -78,9 +76,9 @@ public class Fenetre {
         }
 
 
-
     }
-    private static  int vies;
+
+    private static int vies;
     private static int compte;
 
     public static void draw(String nom) {
@@ -105,61 +103,61 @@ public class Fenetre {
 
                     affichePacman(laby, k, j, w);
                     if (k == caractF[4][0] && j == caractF[5][0]) {
-                        if(caractF[1][0] == 0) {
+                        if (caractF[1][0] == 0) {
                             StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomerouge.png", 11, 11);
                         }
-                        if(caractF[1][0] == 1) {
+                        if (caractF[1][0] == 1) {
                             StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomerouge.png", 11, 11);
                         }
-                        if(caractF[1][0] == 2) {
-                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomerouge.png", 11, 11);
+                        if (caractF[1][0] == 2) {
+                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomerouge.png", 11, 11);
                         }
-                        if(caractF[1][0] == 3) {
+                        if (caractF[1][0] == 3) {
                             StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomerouge.png", 11, 11);
                         }
                     }
 
 
                     if (k == caractF[4][1] && j == caractF[5][1]) {
-                        if(caractF[1][1] == 0) {
+                        if (caractF[1][1] == 0) {
                             StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomebleu.png", 11, 11);
                         }
-                        if(caractF[1][1] == 1) {
+                        if (caractF[1][1] == 1) {
                             StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomebleu.png", 11, 11);
                         }
-                        if(caractF[1][1] == 2) {
-                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomebleu.png", 11, 11);
+                        if (caractF[1][1] == 2) {
+                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomebleu.png", 11, 11);
                         }
-                        if(caractF[1][1] == 3) {
+                        if (caractF[1][1] == 3) {
                             StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomebleu.png", 11, 11);
                         }
                     }
                     if (k == caractF[4][2] && j == caractF[5][2]) {
-                        if(caractF[1][2] == 0) {
+                        if (caractF[1][2] == 0) {
                             StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomeblanc.png", 10, 10);
                         }
-                        if(caractF[1][2] == 1) {
+                        if (caractF[1][2] == 1) {
                             StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomeblanc.png", 10, 10);
                         }
-                        if(caractF[1][2] == 2) {
-                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomeblanc.png", 10, 10);
+                        if (caractF[1][2] == 2) {
+                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomeblanc.png", 10, 10);
                         }
-                        if(caractF[1][2] == 3) {
+                        if (caractF[1][2] == 3) {
                             StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomeblanc.png", 10, 10);
                         }
                     }
 
                     if (k == caractF[4][3] && j == caractF[5][3]) {
-                        if(caractF[1][3] == 0) {
+                        if (caractF[1][3] == 0) {
                             StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomevert.jpg", 9, 9);
                         }
-                        if(caractF[1][3] == 1) {
+                        if (caractF[1][3] == 1) {
                             StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomevert.jpg", 9, 9);
                         }
-                        if(caractF[1][3] == 2) {
-                            StdDraw.picture(10 * j + 5 -w , -10 * k - 5, "fantomevert.jpg", 9, 9);
+                        if (caractF[1][3] == 2) {
+                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomevert.jpg", 9, 9);
                         }
-                        if(caractF[1][3] == 3) {
+                        if (caractF[1][3] == 3) {
                             StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomevert.jpg", 9, 9);
                         }
                     }
@@ -189,30 +187,13 @@ public class Fenetre {
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
 
-            if (vies == 0){
-                JOptionPane jop2 = new JOptionPane();
-                ImageIcon img = new ImageIcon("Lots.jpg");
-                ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-                jop2.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat);
-                System.exit(0);
 
-            }
-
-            if (plusdeP == true){
-                JOptionPane jop3 = new JOptionPane();
-                ImageIcon img1 = new ImageIcon("win.jpg");
-                ImageIcon resultat2 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
-                jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat2);
-                System.exit(0);
-
-            }
         }
         vies = Scores.Vies();
     }
 
 
-
-    public static void execution(int [] pos, int [][] caractF, char [][] laby, boolean [][] labybool){
+    public static void execution(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
 
         for (int k = 1; k <= 3; k++) {
             int i = 0;
@@ -267,14 +248,20 @@ public class Fenetre {
         }
 
     }
-private static String nom;
 
-        public static void main(String[] args) {
+    private static String nom;
+
+    public static void main(String[] args) {
+
+        boolean refaire = true;
+        vies = 3;
+
+        while (refaire == true) {
 
             JOptionPane jop2 = new JOptionPane();
             ImageIcon img = new ImageIcon("logo.jpg");
             ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
-            jop2.showMessageDialog(null, "Bienvenue sur PACMAN ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat);
+            jop2.showMessageDialog(null, "Bienvenue sur PACMAN ", "PACMAN", JOptionPane.INFORMATION_MESSAGE, resultat);
 
             JOptionPane jop = new JOptionPane();
             ImageIcon toto = new ImageIcon("Toto.jpg");
@@ -303,26 +290,61 @@ private static String nom;
             char[][] laby = Laby.Gene(pos, caractF, false);
             boolean[][] labybool = Laby.GeneBool(laby);
 
-          while(true){
-              execution(pos, caractF, laby, labybool);
-              pos[0] = 23;
-              pos[1]= 14;
-              Pacman.setPos(pos);
-              caractF = Fantome.initialisationF();
-              //Laby.Afficher(Laby.Gene(pos, caractF, false));
-              vies = Scores.Vies();
-              changement = Scores.getChangement();
-              laby = Laby.Gene(pos, caractF, false);
-              Joueur.ini(val);
-              draw(nom);
-              System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttt");
-              StdDraw.pause(1000);
-          }
+            while (true) {
+                execution(pos, caractF, laby, labybool);
+                pos[0] = 23;
+                pos[1] = 14;
+                Pacman.setPos(pos);
+                //Laby.Afficher(Laby.Gene(pos, caractF, false));
+                vies = Scores.Vies();
+                changement = Scores.getChangement();
+                laby = Laby.Gene(pos, caractF, false);
+                Joueur.ini(val);
+                draw(nom);
+                System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttt");
+                StdDraw.pause(1000);
+
+                if (vies == 0) {
+                    JOptionPane jop3 = new JOptionPane();
+                    ImageIcon img1 = new ImageIcon("Lots.jpg");
+                    ImageIcon resultat1 = new ImageIcon(img1.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+                    jop2.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat1);
+
+                    JOptionPane jop4 = new JOptionPane();
+                    int n = jop4.showConfirmDialog(null, "Voulez-rejouer ? ", "Pacman", JOptionPane.YES_NO_OPTION);
+
+                    if (n == JOptionPane.YES_OPTION) {
+                        refaire = true;
+
+                    } else {
+                        refaire = false;
+                        System.exit(0);
+                    }
+
+                }
+
+                if (plusdeP == true) {
+                    JOptionPane jop3 = new JOptionPane();
+                    ImageIcon img1 = new ImageIcon("win.jpg");
+                    ImageIcon resultat3 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
+                    jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
+
+                    JOptionPane jop4 = new JOptionPane();
+                    jop4.showMessageDialog(null, "Voulez-rejouer ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+            }
+
+
+        }
+    }
 
 
         }
 
-        }
+
+
 
 
 
