@@ -254,9 +254,13 @@ public class Fenetre {
     public static void main(String[] args) {
 
         boolean refaire = true;
-        vies = 3;
+
+
 
         while (refaire == true) {
+
+            boolean exec = true;
+
 
             JOptionPane jop2 = new JOptionPane();
             ImageIcon img = new ImageIcon("logo.jpg");
@@ -290,7 +294,7 @@ public class Fenetre {
             char[][] laby = Laby.Gene(pos, caractF, false);
             boolean[][] labybool = Laby.GeneBool(laby);
 
-            while (true) {
+            while (exec == true) {
                 execution(pos, caractF, laby, labybool);
                 pos[0] = 23;
                 pos[1] = 14;
@@ -315,6 +319,9 @@ public class Fenetre {
 
                     if (n == JOptionPane.YES_OPTION) {
                         refaire = true;
+                        exec = false;
+                        StdDraw.clear();
+                        vies = 3;
 
                     } else {
                         refaire = false;
