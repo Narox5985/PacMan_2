@@ -40,8 +40,11 @@ public class Scores {
 
     return (plusdeP);
 }
+    private static int vies;
 
-    private static int vies = 3;
+    public static void setVies (int x){
+        vies = x;
+    }
     private static boolean changement;
 
     public static boolean getChangement(){

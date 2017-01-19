@@ -89,6 +89,7 @@ public class Fenetre {
         char dir = Joueur.getDep();
 
         StdDraw.setPenColor(0, 39, 218);
+       // int w =10;
         for (int w = 1; w <= 10; w++) {
             for (int k = 0; k < 31; k++) {
                 for (int j = 0; j < 28; j++) {
@@ -186,7 +187,38 @@ public class Fenetre {
             StdDraw.show(10);
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
+            if (vies == 0) {
+                JOptionPane jop3 = new JOptionPane();
+                ImageIcon img1 = new ImageIcon("Lots.jpg");
+                ImageIcon resultat1 = new ImageIcon(img1.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+                jop3.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat1);
 
+                JOptionPane jop4 = new JOptionPane();
+                int n = jop4.showConfirmDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.YES_NO_OPTION);
+
+                if (n == JOptionPane.YES_OPTION) {
+                    refaire = true;
+                    //exec = false;
+                    //StdDraw.clear();
+                    Scores.setVies (3);
+
+                } else {
+                    refaire = false;
+                    System.exit(0);
+                }
+
+            }
+
+            if (plusdeP == true) {
+                JOptionPane jop3 = new JOptionPane();
+                ImageIcon img1 = new ImageIcon("win.jpg");
+                ImageIcon resultat3 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
+                jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
+
+                JOptionPane jop4 = new JOptionPane();
+                jop4.showMessageDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
+
+            }
 
         }
         vies = Scores.Vies();
@@ -250,14 +282,11 @@ public class Fenetre {
     }
 
     private static String nom;
-
+    private static  boolean refaire;
     public static void main(String[] args) {
 
-        boolean refaire = true;
+        refaire = true;
 
-
-
-        while (refaire == true) {
 
             boolean exec = true;
 
@@ -279,6 +308,8 @@ public class Fenetre {
             StdDraw.filledRectangle(140, -160, 140, 160);
             StdDraw.enableDoubleBuffering();
 
+       // while (refaire == true) {
+            Scores.setVies(3);
             int[] pos = {23, 14};
             int[][] caractF = Fantome.initialisationF();
             Laby.Afficher(Laby.Gene(pos, caractF, false));
@@ -294,61 +325,29 @@ public class Fenetre {
             char[][] laby = Laby.Gene(pos, caractF, false);
             boolean[][] labybool = Laby.GeneBool(laby);
 
-            while (exec == true) {
+            while (true) {
                 execution(pos, caractF, laby, labybool);
                 pos[0] = 23;
                 pos[1] = 14;
                 Pacman.setPos(pos);
+                caractF = Fantome.initialisationF();
                 //Laby.Afficher(Laby.Gene(pos, caractF, false));
                 vies = Scores.Vies();
                 changement = Scores.getChangement();
                 laby = Laby.Gene(pos, caractF, false);
                 Joueur.ini(val);
                 draw(nom);
-                System.out.println("tttttttttttttttttttttttttttttttttttttttttttttttttt");
                 StdDraw.pause(1000);
 
-                if (vies == 0) {
-                    JOptionPane jop3 = new JOptionPane();
-                    ImageIcon img1 = new ImageIcon("Lots.jpg");
-                    ImageIcon resultat1 = new ImageIcon(img1.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT));
-                    jop2.showMessageDialog(null, "Vous avez perdu! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat1);
-
-                    JOptionPane jop4 = new JOptionPane();
-                    int n = jop4.showConfirmDialog(null, "Voulez-rejouer ? ", "Pacman", JOptionPane.YES_NO_OPTION);
-
-                    if (n == JOptionPane.YES_OPTION) {
-                        refaire = true;
-                        exec = false;
-                        StdDraw.clear();
-                        vies = 3;
-
-                    } else {
-                        refaire = false;
-                        System.exit(0);
-                    }
-
-                }
-
-                if (plusdeP == true) {
-                    JOptionPane jop3 = new JOptionPane();
-                    ImageIcon img1 = new ImageIcon("win.jpg");
-                    ImageIcon resultat3 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
-                    jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
-
-                    JOptionPane jop4 = new JOptionPane();
-                    jop4.showMessageDialog(null, "Voulez-rejouer ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
-
-                }
 
             }
 
 
-        }
+       // }
     }
+}
 
 
-        }
 
 
 
