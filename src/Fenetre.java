@@ -101,6 +101,9 @@ public class Fenetre {
                     if (laby[k][j] == 'P') {
                         StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 2, 2);
                     }
+                    if (laby[k][j] == 'Y') {
+                        StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 4, 4);
+                    }
 
 
                     affichePacman(laby, k, j, w);

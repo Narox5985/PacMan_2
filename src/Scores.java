@@ -62,6 +62,10 @@ public class Scores {
                 vies = vies - 1;
                 changement = true;
             }
+            if ((caractF[4][k] == npos[0]) && (caractF[5][k] == npos[1])) {
+                vies = vies - 1;
+                changement = true;
+            }
         }
 
 
