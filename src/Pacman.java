@@ -135,8 +135,8 @@ public class Pacman {
 
         return (npos);
     }
-    private static double timeInv;
-    public static double getTimeInv(){
+    private static long timeInv;
+    public static long getTimeInv(){
         return timeInv;
     }
 

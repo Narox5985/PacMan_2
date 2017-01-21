@@ -1,4 +1,6 @@
-
+/**
+ * Created by rivie_000 on 03/01/2017.
+ */
 
 import edu.princeton.cs.introcs.StdDraw;
 import javax.swing.*;
@@ -377,7 +379,7 @@ public class Fenetre {
         for (int k = 1; k <= 3; k++) {
             int i = 0;
             long t = System.currentTimeMillis();
-            long end = t + 2500;
+            long end = t + 3000;
             while (System.currentTimeMillis() < end && changement == false) {
                     Joueur.cmdPacman();
                     pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));

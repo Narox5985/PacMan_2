@@ -14,7 +14,6 @@ public class FantomeRouge {
 
         boolean [] test = {false,false,false,false};
 
-        //System.out.println("========" + x + "=========" + y + "========");
         if (labybool[x - 1][y]){
             test[0] = true;
         }
