@@ -51,10 +51,6 @@ public class FantomeRouge {
         boolean [][] labybool = Laby.getLabybool();
         boolean [] test = TestDeplacementR(labybool);
 
-        for(int k=0; k<4; k++){
-            System.out.print(test[k] + "    ");
-        }
-        System.out.println( "     ");
         int[] npos = Pacman.getNPos();
         int[][] caractF = Fantome.getCaractF();
         int dir = caractF[0][0];
@@ -62,7 +58,6 @@ public class FantomeRouge {
         int diffLargeur = npos[1] - caractF[3][0];
 
         int diffHautLarg = Math.abs(diffHauteur) - Math.abs(diffLargeur);
-
 
         if( diffHautLarg > 0){
             if (diffHauteur > 0){

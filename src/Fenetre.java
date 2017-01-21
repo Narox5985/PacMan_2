@@ -109,18 +109,52 @@ public class Fenetre {
 
                     for(int fant =0; fant <4; fant ++) {
                         if (caractF[6][fant] == 0) {
-                            if (k == caractF[4][fant] && j == caractF[5][fant]) {
-                                if (caractF[1][fant] == 0) {
-                                    StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
+                            if(System.currentTimeMillis() < timeInv + 8000) {
+                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                    if (caractF[1][fant] == 0) {
+                                        StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 1) {
+                                        StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 2) {
+                                        StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 3) {
+                                        StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                    }
                                 }
-                                if (caractF[1][fant] == 1) {
-                                    StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
-                                }
-                                if (caractF[1][fant] == 2) {
-                                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
-                                }
-                                if (caractF[1][fant] == 3) {
-                                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                            }
+                            if(System.currentTimeMillis() > timeInv + 7000) {
+                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                    if (w < 4) {
+                                        if (caractF[1][fant] == 0) {
+                                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVulFin.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 1) {
+                                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVulFin.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 2) {
+                                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 3) {
+                                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                        }
+                                    }
+                                    if (w > 4) {
+                                        if (caractF[1][fant] == 0) {
+                                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 1) {
+                                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 2) {
+                                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 3) {
+                                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                    }
                                 }
                             }
                         }
