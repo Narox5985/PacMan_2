@@ -135,17 +135,25 @@ public class Pacman {
 
         return (npos);
     }
+    private static double timeInv;
+    public static double getTimeInv(){
+        return timeInv;
+    }
+
     public static boolean invincibilite(){
         if (npos[0] == 3 && npos[1] == 26) {
-            return true;
+            timeInv= System.currentTimeMillis();
         }
         if (npos[0] == 3 && npos[1] == 1) {
-            return true;
+            timeInv= System.currentTimeMillis();
         }
         if (npos[0] == 23 && npos[1] == 26) {
-            return true;
+            timeInv= System.currentTimeMillis();
         }
         if (npos[0] == 23 && npos[1] == 1) {
+            timeInv= System.currentTimeMillis();
+        }
+        if(System.currentTimeMillis() < timeInv + 10000){
             return true;
         }
         else{

@@ -109,7 +109,7 @@ public class Fenetre {
 
                     for(int fant =0; fant <4; fant ++) {
                         if (caractF[6][fant] == 0) {
-                            if(System.currentTimeMillis() < timeInv + 8000) {
+                            if(System.currentTimeMillis() < Pacman.getTimeInv () + 7000) {
                                 if (k == caractF[4][fant] && j == caractF[5][fant]) {
                                     if (caractF[1][fant] == 0) {
                                         StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
@@ -125,7 +125,7 @@ public class Fenetre {
                                     }
                                 }
                             }
-                            if(System.currentTimeMillis() > timeInv + 7000) {
+                            if(System.currentTimeMillis() > Pacman.getTimeInv () + 7000) {
                                 if (k == caractF[4][fant] && j == caractF[5][fant]) {
                                     if (w < 4) {
                                         if (caractF[1][fant] == 0) {
@@ -325,7 +325,7 @@ public class Fenetre {
 
             compte = Scores.Compte();
             StdDraw.show(10);
-            StdDraw.pause(20);
+            StdDraw.pause(13);
             StdDraw.clear(StdDraw.BLACK);
         }
         if (vies == 0) {
@@ -370,15 +370,15 @@ public class Fenetre {
 
 
 
-private static double timeInv;
+//private static double timeInv;
     public static void executionDeb(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
-
+        boolean invincibilite = false;
+        int cmpt = 0;
         for (int k = 1; k <= 3; k++) {
             int i = 0;
             long t = System.currentTimeMillis();
             long end = t + 2500;
             while (System.currentTimeMillis() < end && changement == false) {
-                //if (Laby.invincibilite() == false){
                     Joueur.cmdPacman();
                     pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
                     Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
@@ -387,7 +387,6 @@ private static double timeInv;
                     }
                     if (k == 1) {
                         Fantome.DeplacementF(1, 0);
-                        //Fantome.DeplacementF(0, 3);
                     }
                     if (k == 2 && i == 0) {
                         Fantome.DeplacementF(2, 3);
@@ -405,14 +404,30 @@ private static double timeInv;
                     }
                     caractF = Fantome.getCaractF();
                     Laby.Gene(pos, caractF, false, false);
+                if (invincibilite == false){
                     Fenetre.draw(nom);
                     changement = Scores.getChangement();
-               // }
+                    cmpt =0;
+                    invincibilite = Pacman.invincibilite();
+                }
+                if (invincibilite == true){
+                    cmpt = cmpt +1;
+                    if (cmpt == 1) {
+                        for(int fant =0; fant < 4; fant ++){
+                            Fantome.setCaractFInv(0, fant);
+                        }
+                        //timeInv = System.currentTimeMillis();
+                    }
+                    Fenetre.drawInv(nom);
+                    invincibilite = Pacman.invincibilite();
+
+                }
+
+
             }
         }
 
         while (changement == false) {
-            if (Pacman.invincibilite() == false) {
                 Joueur.cmdPacman();
                 pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
                 Fantome.deplacementDesFantomes(1, 3);
@@ -420,26 +435,23 @@ private static double timeInv;
                 caractF = Fantome.getCaractF();
                 Laby.Gene(pos, caractF, true, false);
                 labybool = Laby.GeneBool(laby);
-
+            if (invincibilite == false) {
                 Fenetre.draw(nom);
+                cmpt =0;
                 changement = Scores.getChangement();
+                invincibilite = Pacman.invincibilite();
             }
-            if(Pacman.invincibilite() == true){
-                timeInv = System.currentTimeMillis();
-                for(int fant =0; fant < 4; fant ++){
-                    Fantome.setCaractFInv(0, fant);
-                }
 
-                while(System.currentTimeMillis() < timeInv + 10000) {
-                    Joueur.cmdPacman();
-                    pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                    Fantome.deplacementDesFantomes(1, 3);
-                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-                    caractF = Fantome.getCaractF();
-                    Laby.Gene(pos, caractF, true, false);
-                    labybool = Laby.GeneBool(laby);
-                    Fenetre.drawInv(nom);
+            if (invincibilite == true){
+                cmpt = cmpt +1;
+                if (cmpt == 1) {
+                    for(int fant =0; fant < 4; fant ++){
+                        Fantome.setCaractFInv(0, fant);
+                    }
                 }
+                Fenetre.drawInv(nom);
+                invincibilite = Pacman.invincibilite();
+
             }
 
         }

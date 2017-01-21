@@ -48,7 +48,7 @@ public class Scores {
     int vic =0;
         for (int k = 0; k < 31; k++) {
         for (int j = 0; j < 28; j++) {
-            if (laby[k][j] == 'P') {
+            if (laby[k][j] == 'P' || laby[k][j] == 'Y') {
                 vic = vic + 1;
             }
         }
