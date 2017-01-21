@@ -135,4 +135,21 @@ public class Pacman {
 
         return (npos);
     }
+    public static boolean invincibilite(){
+        if (npos[0] == 3 && npos[1] == 26) {
+            return true;
+        }
+        if (npos[0] == 3 && npos[1] == 1) {
+            return true;
+        }
+        if (npos[0] == 23 && npos[1] == 26) {
+            return true;
+        }
+        if (npos[0] == 23 && npos[1] == 1) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

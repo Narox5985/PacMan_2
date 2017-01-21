@@ -8,8 +8,12 @@ import static sun.swing.MenuItemLayoutHelper.max;
 public class Fantome {
     private static int[][] caractF;
 
+    public static void setCaractFInv(int TestInv, int fant){
+        caractF[6][fant] = TestInv;
+    }
+
     public static int[][] initialisationF() {
-        caractF = new int[6][4];
+        caractF = new int[7][4];
         //caractF[0][0] = 1;
         for (int i = 0; i < 4; i++) {
             caractF[0][i] = 0;

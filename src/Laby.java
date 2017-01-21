@@ -533,6 +533,7 @@ public class Laby {
 		return(laby);
 	}
 
+
 	private static int [] anciennePos;
 
 

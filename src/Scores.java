@@ -6,9 +6,13 @@ import java.awt.*;
  */
 public class Scores {
 
+    private static int compteFant;
 
     public static int Compte() {
         int compte = 0;
+        int[] npos = Pacman.getNPos();
+        int[][] caractF = Fantome.getCaractF();
+
         char[][] laby = Laby.getLaby();
         for (int k = 0; k < 31; k++) {
             for (int j = 0; j < 28; j++) {
@@ -17,6 +21,21 @@ public class Scores {
                 }
             }
         }
+        for (int k = 0; k < 4; k++) {
+            if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
+                if(caractF[6][k] == 0) {
+                    Fantome.setCaractFInv(1, k);
+                    compteFant = compteFant + 20;
+                }
+            }
+            if ((caractF[4][k] == npos[0]) && (caractF[5][k] == npos[1])) {
+                if(caractF[6][k] == 0) {
+                    Fantome.setCaractFInv(1, k);
+                    compteFant = compteFant + 20;
+                }
+            }
+        }
+        compte = compte + compteFant;
 
         return (compte);
     }
@@ -67,8 +86,6 @@ public class Scores {
                 changement = true;
             }
         }
-
-
 
         return (vies);
     }

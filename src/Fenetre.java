@@ -82,15 +82,117 @@ public class Fenetre {
     private static int vies;
     private static int compte;
 
-    public static void draw(String nom) {
+    public static void drawInv(String nom) {
         laby = Laby.getLaby();
-        int[][] caractF = Fantome.getCaractF();
-        compte = Scores.Compte();
         boolean plusdeP = Scores.CompteurVictoire();
+        int[][] caractF = Fantome.getCaractF();
         char dir = Joueur.getDep();
 
         StdDraw.setPenColor(0, 39, 218);
        // int w =10;
+        for (int w = 1; w <= 10; w++) {
+            for (int k = 0; k < 31; k++) {
+                for (int j = 0; j < 28; j++) {
+                    StdDraw.setPenColor(0, 39, 218);
+                    if (laby[k][j] == '#') {
+                        StdDraw.rectangle(j * 10 + 5, -10 * k - 5, 5, 5);
+                    }
+                    if (laby[k][j] == 'P') {
+                        StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 2, 2);
+                    }
+                    if (laby[k][j] == 'Y') {
+                        StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 4, 4);
+                    }
+
+
+                    affichePacman(laby, k, j, w);
+
+                    for(int fant =0; fant <4; fant ++) {
+                        if (caractF[6][fant] == 0) {
+                            if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                if (caractF[1][fant] == 0) {
+                                    StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
+                                }
+                                if (caractF[1][fant] == 1) {
+                                    StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
+                                }
+                                if (caractF[1][fant] == 2) {
+                                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                }
+                                if (caractF[1][fant] == 3) {
+                                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                }
+                            }
+                        }
+                        if (caractF[6][fant] == 1) {
+                            if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                if (caractF[1][fant] == 0) {
+                                    StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomeInv.png", 11, 11);
+                                }
+                                if (caractF[1][fant] == 1) {
+                                    StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomeInv.png", 11, 11);
+                                }
+                                if (caractF[1][fant] == 2) {
+                                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                }
+                                if (caractF[1][fant] == 3) {
+                                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                }
+                            }
+                        }
+                    }
+
+                    if (laby[k][j] == 'M') {
+                        StdDraw.rectangle(10 * j + 5, -10 * k - 5, 3, 3);
+                    }
+
+                }
+            }
+
+            StdDraw.setPenColor(StdDraw.BLUE);
+            StdDraw.filledRectangle(240, -380, 280, 50);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(20, -350, "Vies : " + vies);
+            StdDraw.picture(10, -350, "cerises.png", 10, 10);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(100, -350, "Score : " + compte);
+            StdDraw.picture(80, -350, "Pastille.png", 10, 10);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(190, -350, "Le PACMAN de");
+            StdDraw.textLeft(210, -360, nom);
+
+
+            compte = Scores.Compte();
+            StdDraw.show(10);
+            StdDraw.pause(20);
+            StdDraw.clear(StdDraw.BLACK);
+        }
+
+        if (plusdeP == true) {
+            JOptionPane jop3 = new JOptionPane();
+            ImageIcon img1 = new ImageIcon("win.jpg");
+            ImageIcon resultat3 = new ImageIcon(img1.getImage().getScaledInstance(275, 275, Image.SCALE_DEFAULT));
+            jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
+
+            JOptionPane jop4 = new JOptionPane();
+            jop4.showMessageDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
+
+
+
+
+
+    public static void draw(String nom) {
+        laby = Laby.getLaby();
+        boolean plusdeP = Scores.CompteurVictoire();
+        int[][] caractF = Fantome.getCaractF();
+        char dir = Joueur.getDep();
+
+        StdDraw.setPenColor(0, 39, 218);
+        // int w =10;
         for (int w = 1; w <= 10; w++) {
             for (int k = 0; k < 31; k++) {
                 for (int j = 0; j < 28; j++) {
@@ -173,7 +275,7 @@ public class Fenetre {
                 }
             }
 
-            compte = Scores.Compte();
+            //compte = Scores.Compte();
             StdDraw.setPenColor(StdDraw.BLUE);
             StdDraw.filledRectangle(240, -380, 280, 50);
             StdDraw.setPenColor(StdDraw.WHITE);
@@ -229,57 +331,82 @@ public class Fenetre {
     }
 
 
-    public static void execution(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
+
+
+
+
+
+private static double timeInv;
+    public static void executionDeb(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
 
         for (int k = 1; k <= 3; k++) {
             int i = 0;
             long t = System.currentTimeMillis();
-            long end = t + 3000;
+            long end = t + 2500;
             while (System.currentTimeMillis() < end && changement == false) {
-
-                Joueur.cmdPacman();
-                pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-                if (k > 1 && i != 0) {
-                    Fantome.deplacementDesFantomes(1, k - 1);
-                }
-                if (k == 1) {
-                    Fantome.DeplacementF(1, 0);
-                    //Fantome.DeplacementF(0, 3);
-                }
-                if (k == 2 && i == 0) {
-                    Fantome.DeplacementF(2, 3);
-                    i = i + 1;
-                }
-                if (k == 2 && i != 0) {
-                    Fantome.DeplacementF(2, 0);
-                }
-                if (k == 3 && i == 0) {
-                    Fantome.DeplacementF(3, 2);
-                    i = i + 1;
-                }
-                if (k == 3 && i != 0) {
-                    Fantome.DeplacementF(3, 0);
-                }
-                caractF = Fantome.getCaractF();
-                Laby.Gene(pos, caractF, false, false);
-                Fenetre.draw(nom);
-                changement = Scores.getChangement();
+                //if (Laby.invincibilite() == false){
+                    Joueur.cmdPacman();
+                    pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                    if (k > 1 && i != 0) {
+                        Fantome.deplacementDesFantomes(1, k - 1);
+                    }
+                    if (k == 1) {
+                        Fantome.DeplacementF(1, 0);
+                        //Fantome.DeplacementF(0, 3);
+                    }
+                    if (k == 2 && i == 0) {
+                        Fantome.DeplacementF(2, 3);
+                        i = i + 1;
+                    }
+                    if (k == 2 && i != 0) {
+                        Fantome.DeplacementF(2, 0);
+                    }
+                    if (k == 3 && i == 0) {
+                        Fantome.DeplacementF(3, 2);
+                        i = i + 1;
+                    }
+                    if (k == 3 && i != 0) {
+                        Fantome.DeplacementF(3, 0);
+                    }
+                    caractF = Fantome.getCaractF();
+                    Laby.Gene(pos, caractF, false, false);
+                    Fenetre.draw(nom);
+                    changement = Scores.getChangement();
+               // }
             }
         }
 
         while (changement == false) {
+            if (Pacman.invincibilite() == false) {
+                Joueur.cmdPacman();
+                pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+                Fantome.deplacementDesFantomes(1, 3);
+                Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                caractF = Fantome.getCaractF();
+                Laby.Gene(pos, caractF, true, false);
+                labybool = Laby.GeneBool(laby);
 
-            Joueur.cmdPacman();
-            pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-            Fantome.deplacementDesFantomes(1, 3);
-            Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-            caractF = Fantome.getCaractF();
-            Laby.Gene(pos, caractF, true, false);
-            labybool = Laby.GeneBool(laby);
+                Fenetre.draw(nom);
+                changement = Scores.getChangement();
+            }
+            if(Pacman.invincibilite() == true){
+                timeInv = System.currentTimeMillis();
+                for(int fant =0; fant < 4; fant ++){
+                    Fantome.setCaractFInv(0, fant);
+                }
 
-            Fenetre.draw(nom);
-            changement = Scores.getChangement();
+                while(System.currentTimeMillis() < timeInv + 10000) {
+                    Joueur.cmdPacman();
+                    pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+                    Fantome.deplacementDesFantomes(1, 3);
+                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                    caractF = Fantome.getCaractF();
+                    Laby.Gene(pos, caractF, true, false);
+                    labybool = Laby.GeneBool(laby);
+                    Fenetre.drawInv(nom);
+                }
+            }
 
         }
 
@@ -330,7 +457,7 @@ public class Fenetre {
 
 
             while (true) {
-                execution(pos, caractF, laby, labybool);
+                executionDeb(pos, caractF, laby, labybool);
                 pos[0] = 23;
                 pos[1] = 14;
                 Pacman.setPos(pos);
