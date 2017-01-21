@@ -59,45 +59,75 @@ public class FantomeRouge {
 
         int diffHautLarg = Math.abs(diffHauteur) - Math.abs(diffLargeur);
 
-        if( diffHautLarg > 0){
-            if (diffHauteur > 0){
-                if (test[1]){
-                    dir = 1;
+        if(Pacman.invincibilite()== false) {
+            if (diffHautLarg > 0) {
+                if (diffHauteur > 0) {
+                    if (test[1]) {
+                        dir = 1;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
-                else{
-                    dir = caractF[0][0];
+                if (diffHauteur < 0) {
+                    if (test[0]) {
+                        dir = 0;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
             }
-            if (diffHauteur < 0){
-                if (test[0]){
-                    dir = 0;
+
+            if (diffHautLarg < 0) {
+                if (diffLargeur > 0) {
+                    if (test[3]) {
+                        dir = 3;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
-                else{
-                    dir = caractF[0][0];
+                if (diffLargeur < 0) {
+                    if (test[2]) {
+                        dir = 2;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
             }
         }
-
-        if( diffHautLarg < 0){
-            if (diffLargeur > 0){
-                if (test[3]){
-                    dir = 3;
+        if(Pacman.invincibilite() == true) {
+            if (diffHautLarg < 0) {
+                if (diffHauteur > 0) {
+                    if (test[1]) {
+                        dir = 1;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
-                else{
-                    dir = caractF[0][0];
+                if (diffHauteur < 0) {
+                    if (test[0]) {
+                        dir = 0;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
             }
-            if (diffLargeur < 0){
-                if (test[2]){
-                    dir = 2;
+
+            if (diffHautLarg > 0) {
+                if (diffLargeur > 0) {
+                    if (test[3]) {
+                        dir = 3;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
-                else{
-                    dir = caractF[0][0];
+                if (diffLargeur < 0) {
+                    if (test[2]) {
+                        dir = 2;
+                    } else {
+                        dir = caractF[0][0];
+                    }
                 }
             }
-        }
-        if (diffHautLarg == 0){
-
         }
         return (dir);
 
