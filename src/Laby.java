@@ -5,7 +5,7 @@ public class Laby {
 	private static char[][] laby = new char [31][28];
 
 
-	public static char [][] Gene(int [] pos, int [][] caractF, boolean fermetureCage, boolean reset){
+	public static char [][] Gene(int [] pos,  int [][] caractF, boolean fermetureCage, boolean reset){
 
 		anciennePos = Pacman.getAnciennePos();
 
@@ -461,7 +461,7 @@ public class Laby {
 		if (reset) {
 			for (int k = 0; k < 31; k++) {
 				for (int j = 0; j < 28; j++) {
-					if (laby[k][j] == 'V') {
+					if (laby[k][j] == 'V' ) {
 						laby[k][j] = 'P';
 					}
 				}

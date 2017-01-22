@@ -14,8 +14,8 @@ public class Pacman {
     public static void setPos(int[] npos) {
         Pacman.npos = npos;
     }
-    public static int [] getPos (){
-        return npos;
+    public static void setAncPos(int[] npos) {
+        Pacman.anciennePos = npos;
     }
 
     public static boolean Testdeplacement(boolean labybool[][]) {

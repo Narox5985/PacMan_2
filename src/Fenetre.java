@@ -211,8 +211,14 @@ public class Fenetre {
             jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
 
             JOptionPane jop4 = new JOptionPane();
-            jop4.showMessageDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
+            int n = jop4.showConfirmDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                Scores.setVies (3);
+                reset = true;
 
+            } else {
+                System.exit(0);
+            }
         }
     }
 
@@ -229,6 +235,9 @@ public class Fenetre {
 
         StdDraw.setPenColor(0, 39, 218);
         // int w =10;
+        vies = Scores.Vies();
+
+
         for (int w = 1; w <= 10; w++) {
             for (int k = 0; k < 31; k++) {
                 for (int j = 0; j < 28; j++) {
@@ -330,6 +339,7 @@ public class Fenetre {
             StdDraw.pause(13);
             StdDraw.clear(StdDraw.BLACK);
         }
+
         if (vies == 0) {
             JOptionPane jop3 = new JOptionPane();
             ImageIcon img1 = new ImageIcon("Lots.jpg");
@@ -340,19 +350,14 @@ public class Fenetre {
             int n = jop4.showConfirmDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.YES_NO_OPTION);
 
             if (n == JOptionPane.YES_OPTION) {
-                //refaire = true;
-                //exec = false;
-                //StdDraw.clear();
                 Scores.setVies (3);
                 reset = true;
 
             } else {
-                // refaire = false;
                 System.exit(0);
             }
 
         }
-
         if (plusdeP == true) {
             JOptionPane jop3 = new JOptionPane();
             ImageIcon img1 = new ImageIcon("win.jpg");
@@ -360,10 +365,81 @@ public class Fenetre {
             jop3.showMessageDialog(null, "Vous avez gagné! ", "Pacman", JOptionPane.INFORMATION_MESSAGE, resultat3);
 
             JOptionPane jop4 = new JOptionPane();
-            jop4.showMessageDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.INFORMATION_MESSAGE);
+            int n = jop4.showConfirmDialog(null, "Voulez-vous jouer à nouveau ? ", "Pacman", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                Scores.setVies (3);
+                reset = true;
 
+            } else {
+                System.exit(0);
+            }
         }
-        vies = Scores.Vies();
+    }
+
+
+
+
+
+    public static void drawIni(String nom) {
+        laby = Laby.getLaby();
+        int[][] caractF = Fantome.getCaractF();
+        char dir = Joueur.getDep();
+
+        StdDraw.setPenColor(0, 39, 218);
+        int [] npos = Pacman.getNPos();
+
+        for (int k = 0; k < 31; k++) {
+            for (int j = 0; j < 28; j++) {
+                StdDraw.setPenColor(0, 39, 218);
+                if (laby[k][j] == '#') {
+                    StdDraw.rectangle(j * 10 + 5, -10 * k - 5, 5, 5);
+                }
+                if (laby[k][j] == 'P') {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 2, 2);
+                }
+                if (laby[k][j] == 'Y') {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 4, 4);
+                }
+
+                if (k == npos[0] && j == npos[1]) {
+                    StdDraw.picture(10 * j + 5 , -10 * k - 5, "imagepacmanG.png", 8, 8);
+                }
+                if (k == caractF[4][0] && j == caractF[5][0]) {
+                    StdDraw.picture(10 * j + 5, -10 * k  - 5, "fantomerouge.png", 11, 11);
+                }
+                if (k == caractF[4][1] && j == caractF[5][1]) {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5, "fantomebleu.png", 11, 11);
+                }
+                if (k == caractF[4][2] && j == caractF[5][2]) {
+                    StdDraw.picture(10 * j + 5, -10 * k  - 5, "fantomeblanc.png", 10, 10);
+                }
+                if (k == caractF[4][3] && j == caractF[5][3]) {
+                    StdDraw.picture(10 * j + 5, -10 * k - 5, "fantomevert.jpg", 9, 9);
+                }
+
+                if (laby[k][j] == 'M') {
+                    StdDraw.rectangle(10 * j + 5, -10 * k - 5, 3, 3);
+                }
+
+            }
+        }
+
+        StdDraw.setPenColor(StdDraw.BLUE);
+        StdDraw.filledRectangle(240, -380, 280, 50);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.textLeft(20, -350, "Vies : " + vies);
+        StdDraw.picture(10, -350, "cerises.png", 10, 10);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.textLeft(100, -350, "Score : " + compte);
+        StdDraw.picture(80, -350, "Pastille.png", 10, 10);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.textLeft(190, -350, "Le PACMAN de");
+        StdDraw.textLeft(210, -360, nom);
+
+        compte = Scores.Compte();
+        StdDraw.show(10);
+        StdDraw.pause(13);
+        StdDraw.clear(StdDraw.BLACK);
     }
 
 
@@ -371,9 +447,7 @@ public class Fenetre {
 
 
 
-
-//private static double timeInv;
-    public static void executionDeb(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
+    public static void execution(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
         boolean invincibilite = false;
         int cmpt = 0;
         for (int k = 1; k <= 3; k++) {
@@ -464,85 +538,64 @@ public class Fenetre {
     private static  boolean refaire;
     public static void main(String[] args) {
 
-       // refaire = true;
+        JOptionPane jop2 = new JOptionPane();
+        ImageIcon img = new ImageIcon("logo.jpg");
+        ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
+        jop2.showMessageDialog(null, "Bienvenue sur PACMAN ", "PACMAN", JOptionPane.INFORMATION_MESSAGE, resultat);
+
+        JOptionPane jop = new JOptionPane();
+        ImageIcon toto = new ImageIcon("Toto.jpg");
+        ImageIcon resultat2 = new ImageIcon(toto.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
+        nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
+
+        StdDraw.setCanvasSize(700, 700);
+        StdDraw.setXscale(0, 280);
+        StdDraw.setYscale(-380, 0);
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.filledRectangle(140, -160, 140, 160);
+        StdDraw.enableDoubleBuffering();
+
+        Scores.setVies(3);
+        int[] pos = {23, 14};
+        int[][] caractF = Fantome.initialisationF();
+        Laby.Afficher(Laby.Gene(pos, caractF, false, false));
+        Pacman.setPos(pos);
+
+        vies = Scores.Vies();
+        drawIni(nom);
+        Joueur.ini(val);
+        char[][] laby = Laby.Gene(pos, caractF, false, false);
+        boolean[][] labybool = Laby.GeneBool(laby);
 
 
-       //     boolean exec = true;
+        while (true) {
+            execution(pos, caractF, laby, labybool);
 
-
-            JOptionPane jop2 = new JOptionPane();
-            ImageIcon img = new ImageIcon("logo.jpg");
-            ImageIcon resultat = new ImageIcon(img.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
-            jop2.showMessageDialog(null, "Bienvenue sur PACMAN ", "PACMAN", JOptionPane.INFORMATION_MESSAGE, resultat);
-
-            JOptionPane jop = new JOptionPane();
-            ImageIcon toto = new ImageIcon("Toto.jpg");
-            ImageIcon resultat2 = new ImageIcon(toto.getImage().getScaledInstance(250, 100, Image.SCALE_DEFAULT));
-            nom = jop.showInputDialog(null, "Veuillez entrer un pseudo !", "PACMAN", JOptionPane.QUESTION_MESSAGE);
-
-            StdDraw.setCanvasSize(700, 700);
-            StdDraw.setXscale(0, 280);
-            StdDraw.setYscale(-380, 0);
-            StdDraw.setPenColor(StdDraw.BLACK);
-            StdDraw.filledRectangle(140, -160, 140, 160);
-            StdDraw.enableDoubleBuffering();
-
-            Scores.setVies(3);
-            int[] pos = {23, 14};
-            int[][] caractF = Fantome.initialisationF();
-            Laby.Afficher(Laby.Gene(pos, caractF, false, false));
+            pos[0] = 23;
+            pos[1] = 14;
             Pacman.setPos(pos);
-
+            caractF = Fantome.initialisationF();
             vies = Scores.Vies();
-            draw(nom);
-
-            boolean plusdeP = Scores.CompteurVictoire();
-
-
-            Joueur.ini(val);
-            char[][] laby = Laby.Gene(pos, caractF, false, false);
-            boolean[][] labybool = Laby.GeneBool(laby);
-
-
-            while (true) {
-                executionDeb(pos, caractF, laby, labybool);
-                pos[0] = 23;
-                pos[1] = 14;
-                Pacman.setPos(pos);
-                caractF = Fantome.initialisationF();
-                //Laby.Afficher(Laby.Gene(pos, caractF, false));
-                vies = Scores.Vies();
+            if (reset == false) {
                 changement = Scores.getChangement();
                 laby = Laby.Gene(pos, caractF, false, false);
                 Joueur.ini(val);
-                draw(nom);
+                drawIni(nom);
                 StdDraw.pause(1000);
-
-                if (reset == true) {
-                    Scores.setVies(3);
-                    pos[0] = 23;
-                    pos[1] = 14;
-                    caractF = Fantome.initialisationF();
-                    Laby.Afficher(Laby.Gene(pos, caractF, false, true));
-                    Pacman.setPos(pos);
-
-                    vies = Scores.Vies();
-                    draw(nom);
-
-                    plusdeP = Scores.CompteurVictoire();
-
-
-                    Joueur.ini(val);
-                    laby = Laby.Gene(pos, caractF, false, true);
-                    labybool = Laby.GeneBool(laby);
-                    reset = false;
-                }
-
-
             }
 
-
-       // }
+            if (reset == true) {
+                int [] Ancpos = {23,14};
+                Pacman.setAncPos(Ancpos);
+                Scores.setVies(3);
+                laby = Laby.Gene(pos, caractF, false, true);
+                Laby.Afficher(Laby.Gene(pos, caractF, false, true));
+                Joueur.ini(val);
+                labybool = Laby.GeneBool(laby);
+                drawIni(nom);
+                reset = false;
+            }
+        }
     }
 }
 
