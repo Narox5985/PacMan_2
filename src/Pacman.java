@@ -141,17 +141,26 @@ public class Pacman {
     }
 
     public static boolean invincibilite(){
+        char[][] laby = Laby.getLaby();
         if (npos[0] == 3 && npos[1] == 26) {
-            timeInv= System.currentTimeMillis();
+            if(laby[3][26] == 'Y') {
+                timeInv = System.currentTimeMillis();
+            }
         }
         if (npos[0] == 3 && npos[1] == 1) {
-            timeInv= System.currentTimeMillis();
+            if(laby[3][1] == 'Y') {
+                timeInv = System.currentTimeMillis();
+            }
         }
         if (npos[0] == 23 && npos[1] == 26) {
-            timeInv= System.currentTimeMillis();
+            if(laby[23][26] == 'Y') {
+                timeInv = System.currentTimeMillis();
+            }
         }
         if (npos[0] == 23 && npos[1] == 1) {
-            timeInv= System.currentTimeMillis();
+            if(laby[23][1] == 'Y') {
+                timeInv = System.currentTimeMillis();
+            }
         }
         if(System.currentTimeMillis() < timeInv + 10000){
             return true;
