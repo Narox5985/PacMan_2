@@ -32,21 +32,16 @@ public class Joueur {
 		}
 		if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
 			dep = 's';
-			System.out.println("s");
 		}
 		if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) {
 			dep = 'z';
-			System.out.println("z");
 		}
 		if (StdDraw.isKeyPressed(KeyEvent.VK_LEFT)) {
 			dep = 'q';
-			System.out.println("q");
 		}
 		if (StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)) {
 			dep = 'd';
-			System.out.println("d");
 		}
-		System.out.println("=======================" + dep + "==============");
 
 	}
 

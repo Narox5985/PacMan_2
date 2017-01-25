@@ -31,7 +31,6 @@ public class Scores {
                 if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
                     if (caractF[6][k] == 0) {
                         Fantome.setCaractFInv(1, k);
-                        System.out.println( "==============" + "STOP" + "========================");
                         compteFant = compteFant + 200;
                     }
                 }

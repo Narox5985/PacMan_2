@@ -474,23 +474,20 @@ public class Fenetre {
                     }
                     caractF = Fantome.getCaractF();
                     Laby.Gene(pos, caractF, false, false);
+                    invincibilite = Pacman.invincibilite();
                 if (invincibilite == false){
                     Fenetre.draw(nom);
                     changement = Scores.getChangement();
                     cmpt =0;
-                    invincibilite = Pacman.invincibilite();
                 }
                 if (invincibilite == true){
                     cmpt = cmpt +1;
                     if (cmpt == 1) {
-                        for(int fant =0; fant < 4; fant ++){
+                        for(int fant =0; fant < 4; fant ++) {
                             Fantome.setCaractFInv(0, fant);
                         }
-                        //timeInv = System.currentTimeMillis();
                     }
                     Fenetre.drawInv(nom);
-                    invincibilite = Pacman.invincibilite();
-
                 }
 
 
@@ -505,11 +502,12 @@ public class Fenetre {
                 caractF = Fantome.getCaractF();
                 Laby.Gene(pos, caractF, true, false);
                 labybool = Laby.GeneBool(laby);
+
+                invincibilite = Pacman.invincibilite();
             if (invincibilite == false) {
                 Fenetre.draw(nom);
                 cmpt =0;
                 changement = Scores.getChangement();
-                invincibilite = Pacman.invincibilite();
             }
 
             if (invincibilite == true){
@@ -520,12 +518,8 @@ public class Fenetre {
                     }
                 }
                 Fenetre.drawInv(nom);
-                invincibilite = Pacman.invincibilite();
-
             }
-
         }
-
     }
 
     private static String nom;
