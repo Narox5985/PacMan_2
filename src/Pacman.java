@@ -74,7 +74,10 @@ public class Pacman {
         dirpac = 'r';
         anciennePos[0] = npos[0];
         anciennePos[1] = npos[1];
+        int x = anciennePos[0];
+        int y = anciennePos[1];
         ancienDep = Joueur.getAncienDep();
+        boolean [][] labybool = Laby.getLabybool();
 
         if (dep == 'z' && test) {
             npos[0] = npos[0] - 1;
@@ -105,15 +108,15 @@ public class Pacman {
 
         if (!test && ancienDep != dep) {
 
-            if (ancienDep == 'z') {
+            if (ancienDep == 'z' && labybool[x - 1][y]) {
                 npos[0] = npos[0] - 1;
                 dirpac = 'z';
             }
-            if (ancienDep == 's') {
+            if (ancienDep == 's' && labybool[x + 1][y]) {
                 npos[0] = npos[0] + 1;
                 dirpac = 's';
             }
-            if (ancienDep == 'q') {
+            if (ancienDep == 'q' && labybool[x][y - 1]) {
                 if (npos[1] == 0) {
                     npos[1] = 27;
                 } else {
@@ -121,7 +124,7 @@ public class Pacman {
                 }
                 dirpac = 'q';
             }
-            if (ancienDep == 'd') {
+            if (ancienDep == 'd' && labybool[x][y + 1]) {
                 if (npos[1] == 27) {
                     npos[1] = 0;
                 } else {

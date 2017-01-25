@@ -12,7 +12,6 @@ public class Fenetre {
     public static char val = 'q';
     static char[][] laby;
     private static char t = 'w';
-    private static Icon Jouer;
     private static boolean changement = Scores.getChangement();
     private static boolean reset;
 
@@ -22,8 +21,6 @@ public class Fenetre {
         int[] anciennePos = Pacman.getAnciennePos();
         int nk = anciennePos[0];
         int nj = anciennePos[1];
-        int[] npos = Pacman.getNPos();
-
 
         if (k == anciennePos[0] && j == anciennePos[1]) {
             if (w >= 5) {
@@ -77,8 +74,6 @@ public class Fenetre {
                 }
             }
         }
-
-
     }
 
     private static int vies;
@@ -198,7 +193,7 @@ public class Fenetre {
             StdDraw.textLeft(210, -360, nom);
 
 
-            compte = Scores.Compte();
+            compte = Scores.Compte(true, false);
             StdDraw.show(10);
             StdDraw.pause(20);
             StdDraw.clear(StdDraw.BLACK);
@@ -320,7 +315,6 @@ public class Fenetre {
                 }
             }
 
-            //compte = Scores.Compte();
             StdDraw.setPenColor(StdDraw.BLUE);
             StdDraw.filledRectangle(240, -380, 280, 50);
             StdDraw.setPenColor(StdDraw.WHITE);
@@ -334,7 +328,7 @@ public class Fenetre {
             StdDraw.textLeft(210, -360, nom);
 
 
-            compte = Scores.Compte();
+            compte = Scores.Compte(false, false);
             StdDraw.show(10);
             StdDraw.pause(13);
             StdDraw.clear(StdDraw.BLACK);
@@ -436,7 +430,7 @@ public class Fenetre {
         StdDraw.textLeft(190, -350, "Le PACMAN de");
         StdDraw.textLeft(210, -360, nom);
 
-        compte = Scores.Compte();
+        compte = Scores.Compte(false, false);
         StdDraw.show(10);
         StdDraw.pause(13);
         StdDraw.clear(StdDraw.BLACK);
@@ -535,7 +529,6 @@ public class Fenetre {
     }
 
     private static String nom;
-    private static  boolean refaire;
     public static void main(String[] args) {
 
         JOptionPane jop2 = new JOptionPane();
@@ -588,6 +581,7 @@ public class Fenetre {
                 int [] Ancpos = {23,14};
                 Pacman.setAncPos(Ancpos);
                 Scores.setVies(3);
+                Scores.Compte(false, true);
                 laby = Laby.Gene(pos, caractF, false, true);
                 Laby.Afficher(Laby.Gene(pos, caractF, false, true));
                 Joueur.ini(val);

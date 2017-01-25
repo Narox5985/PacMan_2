@@ -7,8 +7,11 @@ import java.awt.*;
 public class Scores {
 
     private static int compteFant;
-
-    public static int Compte() {
+    public static int Compte(boolean invincibilite, boolean reset) {
+       // int compteFant;
+        if (reset == true){
+            compteFant = 0;
+        }
         int compte = 0;
         int[] npos = Pacman.getNPos();
         int[][] caractF = Fantome.getCaractF();
@@ -18,20 +21,25 @@ public class Scores {
             for (int j = 0; j < 28; j++) {
                 if (laby[k][j] == 'V') {
                         compte = compte + 10;
+                       // System.out.println( "==============" + k + "========================"+ j);
                 }
             }
         }
-        for (int k = 0; k < 4; k++) {
-            if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
-                if(caractF[6][k] == 0) {
-                    Fantome.setCaractFInv(1, k);
-                    compteFant = compteFant + 20;
+
+        if (invincibilite == true) {
+            for (int k = 0; k < 4; k++) {
+                if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
+                    if (caractF[6][k] == 0) {
+                        Fantome.setCaractFInv(1, k);
+                        System.out.println( "==============" + "STOP" + "========================");
+                        compteFant = compteFant + 200;
+                    }
                 }
-            }
-            if ((caractF[4][k] == npos[0]) && (caractF[5][k] == npos[1])) {
-                if(caractF[6][k] == 0) {
-                    Fantome.setCaractFInv(1, k);
-                    compteFant = compteFant + 20;
+                if ((caractF[4][k] == npos[0]) && (caractF[5][k] == npos[1])) {
+                    if (caractF[6][k] == 0) {
+                        Fantome.setCaractFInv(1, k);
+                        compteFant = compteFant + 200;
+                    }
                 }
             }
         }
