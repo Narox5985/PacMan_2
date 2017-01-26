@@ -72,7 +72,7 @@ public class Fenetre {
 
         compte = Scores.Compte(false, false);
         StdDraw.show(10);
-        StdDraw.pause(13);
+        StdDraw.pause(12);
         StdDraw.clear(StdDraw.BLACK);
     }
 
@@ -243,7 +243,7 @@ public class Fenetre {
 
             compte = Scores.Compte(false, false);
             StdDraw.show(10);
-            StdDraw.pause(13);
+            StdDraw.pause(12);
             StdDraw.clear(StdDraw.BLACK);
         }
 
@@ -293,9 +293,7 @@ public class Fenetre {
         if (cmptF %2 !=0) {
             cmptDraw = 4;
         }
-
         StdDraw.setPenColor(0, 39, 218);
-       // int w =10;
         for (int w = 1; w <= 10; w++) {
             for (int k = 0; k < 31; k++) {
                 for (int j = 0; j < 28; j++) {
@@ -489,7 +487,7 @@ public class Fenetre {
 
             compte = Scores.Compte(true, false);
             StdDraw.show(10);
-            StdDraw.pause(13);
+            StdDraw.pause(12);
             StdDraw.clear(StdDraw.BLACK);
         }
 
