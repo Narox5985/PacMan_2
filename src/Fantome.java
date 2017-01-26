@@ -59,7 +59,6 @@ public class Fantome {
 
     public static int directionFantome(){
         int dir = random.nextInt(4);
-        System.out.println( dir);
         return dir;
     }
 

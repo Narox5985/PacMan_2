@@ -283,9 +283,16 @@ public class Fenetre {
         }
     }
 
-
-    public static void drawInv(String nom, char [][] laby, int[][] caractF ) {
+    private static int nw =0;
+    public static void drawInv(String nom, char [][] laby, int[][] caractF, int cmptF ) {
         boolean plusdeP = Scores.CompteurVictoire();
+        int cmptDraw =0;
+        if (cmptF %2 ==0) {
+            cmptDraw = 0;
+        }
+        if (cmptF %2 !=0) {
+            cmptDraw = 4;
+        }
 
         StdDraw.setPenColor(0, 39, 218);
        // int w =10;
@@ -302,83 +309,169 @@ public class Fenetre {
                     if (laby[k][j] == 'Y') {
                         StdDraw.picture(10 * j + 5, -10 * k - 5, "pastille.png", 4, 4);
                     }
-
-
                     affichePacman(laby, k, j, w);
-
-                    for(int fant =0; fant <4; fant ++) {
-                        if (caractF[6][fant] == 0) {
-                            if(System.currentTimeMillis() < Pacman.getTimeInv () + 7000) {
-                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
-                                    if (caractF[1][fant] == 0) {
-                                        StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
-                                    }
-                                    if (caractF[1][fant] == 1) {
-                                        StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
-                                    }
-                                    if (caractF[1][fant] == 2) {
-                                        StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
-                                    }
-                                    if (caractF[1][fant] == 3) {
-                                        StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
-                                    }
-                                }
-                            }
-                            if(System.currentTimeMillis() > Pacman.getTimeInv () + 7000) {
-                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
-                                    if (w < 4) {
-                                        if (caractF[1][fant] == 0) {
-                                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVulFin.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 1) {
-                                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVulFin.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 2) {
-                                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 3) {
-                                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
-                                        }
-                                    }
-                                    if (w > 4) {
-                                        if (caractF[1][fant] == 0) {
-                                            StdDraw.picture(10 * j + 5, -10 * k + w - 5, "FantomeVul.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 1) {
-                                            StdDraw.picture(10 * j + 5, -10 * k - w - 5, "FantomeVul.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 2) {
-                                            StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
-                                        }
-                                        if (caractF[1][fant] == 3) {
-                                            StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "FantomeVul.jpg", 11, 11);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if (caractF[6][fant] == 1) {
-                            if (k == caractF[4][fant] && j == caractF[5][fant]) {
-                                if (caractF[1][fant] == 0) {
-                                    StdDraw.picture(10 * j + 5, -10 * k + w - 5, "fantomeInv.png", 11, 11);
-                                }
-                                if (caractF[1][fant] == 1) {
-                                    StdDraw.picture(10 * j + 5, -10 * k - w - 5, "fantomeInv.png", 11, 11);
-                                }
-                                if (caractF[1][fant] == 2) {
-                                    StdDraw.picture(10 * j + 5 - w, -10 * k - 5, "fantomeInv.png", 11, 11);
-                                }
-                                if (caractF[1][fant] == 3) {
-                                    StdDraw.picture(10 * j + 5 + w, -10 * k - 5, "fantomeInv.png", 11, 11);
-                                }
-                            }
-                        }
-                    }
-
                     if (laby[k][j] == 'M') {
                         StdDraw.rectangle(10 * j + 5, -10 * k - 5, 3, 3);
                     }
+                }
+            }
 
+            if (cmptF % 2 != 0 ) {
+                if( w % 2 != 0) {
+                    nw = w - cmptDraw +4;
+                    cmptDraw = cmptDraw + 1;
+                }
+                for (int k = 0; k < 31; k++) {
+                    for (int j = 0; j < 28; j++) {
+
+                        for (int fant = 0; fant < 4; fant++) {
+                            if (caractF[6][fant] == 0) {
+                                if (System.currentTimeMillis() < Pacman.getTimeInv() + 7000) {
+                                    if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                        if (caractF[1][fant] == 0) {
+                                            StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 1) {
+                                            StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 2) {
+                                            StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 3) {
+                                            StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                    }
+                                }
+                                if (System.currentTimeMillis() > Pacman.getTimeInv() + 7000) {
+                                    if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                        if (w < 4) {
+                                            if (caractF[1][fant] == 0) {
+                                                StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 1) {
+                                                StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 2) {
+                                                StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 3) {
+                                                StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                        }
+                                        if (w > 4) {
+                                            if (caractF[1][fant] == 0) {
+                                                StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 1) {
+                                                StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 2) {
+                                                StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 3) {
+                                                StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (caractF[6][fant] == 1) {
+                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                    if (caractF[1][fant] == 0) {
+                                        StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 1) {
+                                        StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 2) {
+                                        StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 3) {
+                                        StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (cmptF % 2 == 0) {
+                if(w % 2 == 0) {
+                    nw = w + cmptDraw + 4;
+                    cmptDraw = cmptDraw - 1;
+                }
+                for (int k = 0; k < 31; k++) {
+                    for (int j = 0; j < 28; j++) {
+                        for(int fant =0; fant <4; fant ++) {
+                            if (caractF[6][fant] == 0) {
+                                if(System.currentTimeMillis() < Pacman.getTimeInv () + 7000) {
+                                    if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                        if (caractF[1][fant] == 0) {
+                                            StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 1) {
+                                            StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 2) {
+                                            StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                        if (caractF[1][fant] == 3) {
+                                            StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                        }
+                                    }
+                                }
+                                if(System.currentTimeMillis() > Pacman.getTimeInv () + 7000) {
+                                    if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                        if (w < 4) {
+                                            if (caractF[1][fant] == 0) {
+                                                StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 1) {
+                                                StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 2) {
+                                                StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 3) {
+                                                StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVulFin.jpg", 11, 11);
+                                            }
+                                        }
+                                        if (w > 4) {
+                                            if (caractF[1][fant] == 0) {
+                                                StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 1) {
+                                                StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 2) {
+                                                StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                            if (caractF[1][fant] == 3) {
+                                                StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "FantomeVul.jpg", 11, 11);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (caractF[6][fant] == 1) {
+                                if (k == caractF[4][fant] && j == caractF[5][fant]) {
+                                    if (caractF[1][fant] == 0) {
+                                        StdDraw.picture(10 * j + 5, -10 * k + nw - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 1) {
+                                        StdDraw.picture(10 * j + 5, -10 * k - nw - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 2) {
+                                        StdDraw.picture(10 * j + 5 - nw, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                    if (caractF[1][fant] == 3) {
+                                        StdDraw.picture(10 * j + 5 + nw, -10 * k - 5, "fantomeInv.png", 11, 11);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -396,7 +489,7 @@ public class Fenetre {
 
             compte = Scores.Compte(true, false);
             StdDraw.show(10);
-            StdDraw.pause(20);
+            StdDraw.pause(13);
             StdDraw.clear(StdDraw.BLACK);
         }
 
@@ -418,7 +511,7 @@ public class Fenetre {
         }
     }
 
-
+    private static int cmptF = 0;
     public static void execution(int[] pos, int[][] caractF, char[][] laby, boolean[][] labybool) {
         boolean invincibilite = false;
         int cmpt = 0;
@@ -429,6 +522,11 @@ public class Fenetre {
             while (System.currentTimeMillis() < end && changement == false) {
                     Joueur.cmdPacman();
                     pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
+
+                    Laby.Gene(pos, caractF, false, false);
+                    laby = Laby.getLaby();
+                    invincibilite = Pacman.invincibilite();
+                if (invincibilite == false){
                     Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
                     if (k > 1 && i != 0) {
                         Fantome.deplacementDesFantomes(1, k - 1);
@@ -451,22 +549,48 @@ public class Fenetre {
                         Fantome.DeplacementF(3, 0);
                     }
                     caractF = Fantome.getCaractF();
-                    Laby.Gene(pos, caractF, false, false);
-                    laby = Laby.getLaby();
-                    invincibilite = Pacman.invincibilite();
-                if (invincibilite == false){
+
                     Fenetre.draw(nom, laby, caractF);
+                    cmptF = 0;
                     changement = Scores.getChangement();
                     cmpt =0;
                 }
                 if (invincibilite == true){
+                    if(cmptF % 2 == 0) {
+                        Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                        if (k > 1 && i != 0) {
+                            Fantome.deplacementDesFantomes(1, k - 1);
+                        }
+                        if (k == 1) {
+                            Fantome.DeplacementF(1, 0);
+                        }
+                        if (k == 2 && i == 0) {
+                            Fantome.DeplacementF(2, 3);
+                            i = i + 1;
+                        }
+                        if (k == 2 && i != 0) {
+                            Fantome.DeplacementF(2, 0);
+                        }
+                        if (k == 3 && i == 0) {
+                            Fantome.DeplacementF(3, 2);
+                            i = i + 1;
+                        }
+                        if (k == 3 && i != 0) {
+                            Fantome.DeplacementF(3, 0);
+                        }
+                        caractF = Fantome.getCaractF();
+                    }
+
+                    cmptF = cmptF +1;
+
+
                     cmpt = cmpt +1;
                     if (cmpt == 1) {
                         for(int fant =0; fant < 4; fant ++) {
                             Fantome.setCaractFMang(0, fant);
                         }
                     }
-                    Fenetre.drawInv(nom, laby, caractF);
+                    Fenetre.drawInv(nom, laby, caractF, cmptF);
                 }
 
 
@@ -476,28 +600,36 @@ public class Fenetre {
         while (changement == false) {
                 Joueur.cmdPacman();
                 pos = Pacman.Deplacement(Pacman.Testdeplacement(labybool));
-                Fantome.deplacementDesFantomes(1, 3);
-                Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
-                caractF = Fantome.getCaractF();
+
                 Laby.Gene(pos, caractF, true, false);
                 laby = Laby.getLaby();
                 labybool = Laby.GeneBool(laby);
 
                 invincibilite = Pacman.invincibilite();
             if (invincibilite == false) {
+                Fantome.deplacementDesFantomes(1, 3);
+                Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                caractF = Fantome.getCaractF();
                 Fenetre.draw(nom, laby, caractF);
                 cmpt =0;
+                cmptF = 0;
                 changement = Scores.getChangement();
             }
 
             if (invincibilite == true){
+                if(cmptF % 2 == 0) {
+                    Fantome.deplacementDesFantomes(1, 3);
+                    Fantome.DeplacementF(0, FantomeRouge.FuturDepR());
+                    caractF = Fantome.getCaractF();
+                }
+                cmptF = cmptF +1;
                 cmpt = cmpt +1;
                 if (cmpt == 1) {
                     for(int fant =0; fant < 4; fant ++){
                         Fantome.setCaractFMang(0, fant);
                     }
                 }
-                Fenetre.drawInv(nom, laby, caractF);
+                Fenetre.drawInv(nom, laby, caractF, cmptF);
             }
         }
     }
@@ -525,7 +657,6 @@ public class Fenetre {
         Scores.setVies(3);
         int[] pos = {23, 14};
         int[][] caractF = Fantome.initialisationF();
-        Laby.Afficher(Laby.Gene(pos, caractF, false, false));
         Pacman.setPos(pos);
         char[][] laby = Laby.Gene(pos, caractF, false, false);
         vies = Scores.Vies();
