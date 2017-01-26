@@ -12,9 +12,6 @@ public class Joueur {
 	public static char getDep(){
 		return dep;
 	}
-	public static void setDep(char dirDep){
-		dep = dirDep;
-	}
 
 	private static char ancienDep;
 	public static char getAncienDep(){
