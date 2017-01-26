@@ -662,6 +662,8 @@ public class Fenetre {
         Joueur.ini(val);
 
         boolean[][] labybool = Laby.GeneBool(laby);
+        StdDraw.pause(1000);
+
 
 
         while (true) {
