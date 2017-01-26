@@ -8,8 +8,8 @@ import java.util.Random;
 public class Fantome {
     private static int[][] caractF;
 
-    public static void setCaractFInv(int TestInv, int fant){
-        caractF[6][fant] = TestInv;
+    public static void setCaractFMang(int testMang, int fant){
+        caractF[6][fant] = testMang;
     }
 
     public static int[][] initialisationF() {
@@ -59,6 +59,7 @@ public class Fantome {
 
     public static int directionFantome(){
         int dir = random.nextInt(4);
+        System.out.println( dir);
         return dir;
     }
 

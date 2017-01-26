@@ -484,7 +484,7 @@ public class Fenetre {
                     cmpt = cmpt +1;
                     if (cmpt == 1) {
                         for(int fant =0; fant < 4; fant ++) {
-                            Fantome.setCaractFInv(0, fant);
+                            Fantome.setCaractFMang(0, fant);
                         }
                     }
                     Fenetre.drawInv(nom);
@@ -514,7 +514,7 @@ public class Fenetre {
                 cmpt = cmpt +1;
                 if (cmpt == 1) {
                     for(int fant =0; fant < 4; fant ++){
-                        Fantome.setCaractFInv(0, fant);
+                        Fantome.setCaractFMang(0, fant);
                     }
                 }
                 Fenetre.drawInv(nom);

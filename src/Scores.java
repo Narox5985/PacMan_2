@@ -21,7 +21,6 @@ public class Scores {
             for (int j = 0; j < 28; j++) {
                 if (laby[k][j] == 'V') {
                         compte = compte + 10;
-                       // System.out.println( "==============" + k + "========================"+ j);
                 }
             }
         }
@@ -30,13 +29,13 @@ public class Scores {
             for (int k = 0; k < 4; k++) {
                 if ((caractF[2][k] == npos[0]) && (caractF[3][k] == npos[1])) {
                     if (caractF[6][k] == 0) {
-                        Fantome.setCaractFInv(1, k);
+                        Fantome.setCaractFMang(1, k);
                         compteFant = compteFant + 200;
                     }
                 }
                 if ((caractF[4][k] == npos[0]) && (caractF[5][k] == npos[1])) {
                     if (caractF[6][k] == 0) {
-                        Fantome.setCaractFInv(1, k);
+                        Fantome.setCaractFMang(1, k);
                         compteFant = compteFant + 200;
                     }
                 }
